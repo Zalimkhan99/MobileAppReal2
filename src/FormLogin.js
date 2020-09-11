@@ -1,18 +1,18 @@
-import React, {
+import {
+    TextInput
+} from 'react-native-gesture-handler'
+import * as React from 'react'
+import  {
     Component
 } from 'react';
 import {
     StyleSheet,
     Text,
     View,
-    Button
+    Button, 
 } from 'react-native';
 
-import {
-    TextInput
-} from 'react-native-gesture-handler'
-
-
+var authtest = false; // проверка заргестрирован ли пользователь
 export class FormLogin extends Component {
 
     constructor(props) {
@@ -20,12 +20,11 @@ export class FormLogin extends Component {
         this.state = {
             username: '',
             password: '',
-
         }
     }
     _handlePress() {
 
-        var urlAuthHTTP = 'http://192.168.0.117/InfoBase/hs/Demo/auth/';
+        var urlAuthHTTP = 'http://192.168.0.138/InfoBase/hs/Demo/auth/';
         var user = this.state.username;
         var pass = this.state.password;
         var urlСheckLoginHTTP = urlAuthHTTP + '' + user + '/' + pass;
@@ -33,8 +32,10 @@ export class FormLogin extends Component {
         fetch(urlСheckLoginHTTP)
             .then(function (response) {
                 if (!response.ok) {
+                    authtest = false;
                     alert("Логин или пароль введен не правильно")
                 } else {
+                    authtest = true;
                     fetch(urlСheckLoginHTTP, {
                             method: 'GET'
                         })
@@ -43,65 +44,72 @@ export class FormLogin extends Component {
                         .then((responseTextJsonLogin) => {
                             var dataToJSON = JSON.parse(responseTextJsonLogin)
                             var dataToStrJSON = JSON.stringify(dataToJSON, null, 2);
-                            alert(dataToStrJSON);
+
                         })
 
                         .catch((error) => {
                             alert(error);
                         })
                 }
-
             })
     }
 
     render() {
         return (
-
             <View style={styles.container}>
-            <View style={styles.blocks}>
+                <View style={styles.blocks}>
            
-                <View style={styles.logo}> 
-                    <Text style={styles.logo}>Real 2 </Text>
-                </View>
-    
-                <View >
-                    <Text style={styles.text}>Логин: </Text>
-                    <TextInput  
-                    style={styles. elementForm} 
-                    onChangeText ={ username=> this.setState(
-                      {username})}
+                    <View style={styles.logo}> 
+                        <Text style={styles.logo}>Real 2 </Text>
+                    </View>
+
+                    <View >
+                        <Text style={styles.text}>Логин: </Text>
+                        <TextInput  
+                        style={styles. elementForm} 
+                        onChangeText ={ username=> this.setState(
+                            {username})}
+                        />
                     
-                    />
-    
-               
+                    </View>
+
+                    <View>
+                        <Text style={styles.text}>Пароль: </Text>
+                        <TextInput 
+                        style={styles.elementForm} 
+                        secureTextEntry={true}
+                        onChangeText = {password=> this.setState({password})}
+                        />
+                    </View>
+
+                    <View style={styles.btn}>
+                        <Button
+                        onPress={
+                            ()=> {
+                                this._handlePress();
+                                    setTimeout(()=>{
+                                        if(authtest==true){
+                                            this.props.navigation.navigate('Личный кабинет')
+                                            }
+                                    },3000);        
+                                
+                            }
+                        }
+                        title="Войти"
+                        style = {styles.button}
+                        color="#000"
+                        accessibilityLabel="send data!"
+                        />
+                    </View>                  
                 </View>
-    
-                <View>
-                    <Text style={styles.text}>Пароль: </Text>
-                    <TextInput 
-                    style={styles.elementForm} 
-                    secureTextEntry={true}
-                    onChangeText = {password=> this.setState({password})}
-                    />
-                </View>
-    
-                <View style={styles.btn}>
-                <Button
-                onPress={()=> this._handlePress()}
-                title="Войти"
-                style = {styles.button}
-                color="#000"
-                accessibilityLabel="send data!"
-                />
-                </View>                  
             </View>
-            
-            </View>
+
         )
     }
 
 }
 
+// подключение стилей
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -143,3 +151,5 @@ const styles = StyleSheet.create({
     },
 
 });
+
+export default FormLogin;
