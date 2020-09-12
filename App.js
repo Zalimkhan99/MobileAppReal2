@@ -4,8 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import FormLogin from './src/FormLogin'
 import PrivateOffice from './src/PrivateOffice'
-//import {StackNavigator } from '@react-navigation/native'
-//import { createStackNavigator, createAppContainer } from 'react-navigation';
 const Stack = createStackNavigator();
 
 const App = () => {

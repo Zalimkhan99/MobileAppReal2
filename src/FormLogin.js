@@ -15,6 +15,8 @@ import {
 var authtest = false; // проверка заргестрирован ли пользователь
 export class FormLogin extends Component {
 
+
+
     constructor(props) {
         super(props)
         this.state = {
@@ -22,6 +24,7 @@ export class FormLogin extends Component {
             password: '',
         }
     }
+    
     _handlePress() {
 
         var urlAuthHTTP = 'http://192.168.0.138/InfoBase/hs/Demo/auth/';
@@ -89,7 +92,10 @@ export class FormLogin extends Component {
                                 this._handlePress();
                                     setTimeout(()=>{
                                         if(authtest==true){
-                                            this.props.navigation.navigate('Личный кабинет')
+                                            alert(this.state.username);
+                                            this.props.navigation.navigate('Личный кабинет',{userId: this.state.username });
+                                            
+                                        
                                             }
                                     },3000);        
                                 
@@ -106,8 +112,11 @@ export class FormLogin extends Component {
 
         )
     }
-
+onVerify = ()=>{
+    onVerify(this.state.username, this.state.password)
 }
+}
+
 
 // подключение стилей
 const styles = StyleSheet.create({
