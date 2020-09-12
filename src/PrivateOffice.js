@@ -1,47 +1,74 @@
-
-import React, { Component } from 'react';
+import React, {
+    Component
+} from 'react';
 import {
+
     StyleSheet,
     Text,
     View,
     Button,
-
+    FlatList,
 
 } from 'react-native';
 
 
-export class PrivateOffice extends Component{
+
+export class PrivateOffice extends Component {
     constructor() {
         super()
-        
+        this.state = {
+            dataInfoUser: []
+        }
+
     }
-    _test(){
-        const {userId} = this.props.route.params;
+    renderItem = ({
+        item
+    }) => {
+        return (
+
+            <View>
+            <Text style={styles.logo}>Имя: {item.Login} </Text>
+            <Text style={styles.logo}>Предупреждений: {item.Warning}</Text>
+            </View>
+        )
+
+
+    }
+    componentDidMount() {
+        const {
+            userId
+        } = this.props.route.params;
         var urlInfoUserHTTP = 'http://192.168.0.138/InfoBase/hs/Demo/user/';
         var urlUserGetInfo = urlInfoUserHTTP + userId;
         fetch(urlUserGetInfo, {
-            method: 'GET'
-        })
+                method: 'GET'
+            })
+            .then((response) => response.json())
+            .then((responseJSON) => {
+                this.setState({
+                    dataInfoUser: responseJSON.DataUser
+                })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
 
-        .then((responseTextJsonInfoUser) => responseTextJsonInfoUser.text())
-        .then((responseTextJsonInfoUser) => {
-            var dataToJSON = JSON.parse(responseTextJsonInfoUser)
-            var dataToStrJSON = JSON.stringify(dataToJSON, null, 2);
-            alert(dataToStrJSON);
-        })
-
-        .catch((error) => {
-            alert(error);
-        })
-        
-      
     }
 
-    render(){
-        const {userId} = this.props.route.params;
-        return(
-            <View style= {styles.container} >
+
+    render() {
+        const {
+            userId
+        } = this.props.route.params;
+        return (
+            <View  style= {styles.container}>
                 <Text style={styles.logo}>Добро пожаловать, {userId}!</Text>
+                <FlatList
+        
+                data={this.state.dataInfoUser}
+                renderItem = {this.renderItem}
+                />
+
                 <Button 
                 onPress= {()=> {
                     this._test();
@@ -50,6 +77,7 @@ export class PrivateOffice extends Component{
             title="Test"
             accessibilityLabel="test"
                 />
+             
             </View>
         )
     }
