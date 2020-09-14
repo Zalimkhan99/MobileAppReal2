@@ -92,7 +92,7 @@ export class FormLogin extends Component {
                                 this._handlePress();
                                     setTimeout(()=>{
                                         if(authtest==true){
-                                            alert(this.state.username);
+                                            //alert(this.state.username);
                                             this.props.navigation.navigate('Личный кабинет',{userId: this.state.username });
                                             
                                         

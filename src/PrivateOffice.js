@@ -6,7 +6,6 @@ import {
     StyleSheet,
     Text,
     View,
-    Button,
     FlatList,
 
 } from 'react-native';
@@ -28,7 +27,7 @@ export class PrivateOffice extends Component {
         return (
 
             <View style={styles.container}>
-            <Text style={styles.userdata}>Имя: {item.Login} </Text>
+            <Text style={styles.userdata}>Сотрудник: {item.Login} </Text>
             <Text style={styles.userdata}>Предупреждений: {item.Warning}</Text>
             
            
@@ -70,15 +69,15 @@ export class PrivateOffice extends Component {
 
 
     render() {
-        const {
+        /*const {
             userId
-        } = this.props.route.params;
+        } = this.props.route.params;*/
         return (
             <View  style= {styles.container}>
                 <Text style={styles.heading}>Добро пожаловать, в личный кабинет!</Text>
                 
                 <FlatList
-                
+                keyExtractor={item=> item.Login}
                 data={this.state.dataInfoUser}
                 renderItem = {this.renderItem}
                 
