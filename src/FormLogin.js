@@ -47,7 +47,7 @@ export class FormLogin extends Component {
                         .then((responseTextJsonLogin) => {
                             var dataToJSON = JSON.parse(responseTextJsonLogin)
                             var dataToStrJSON = JSON.stringify(dataToJSON, null, 2);
-
+                            console.log(dataToStrJSON);
                         })
 
                         .catch((error) => {
@@ -102,7 +102,7 @@ export class FormLogin extends Component {
                             }
                         }
                         title="Войти"
-                        style = {styles.button}
+                       
                         color="#000"
                         accessibilityLabel="send data!"
                         />
@@ -122,7 +122,7 @@ onVerify = ()=>{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFFF00',
+        backgroundColor: '#cbcf00',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -137,23 +137,25 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#000',
         fontSize: 16,
-        padding: 0
+        padding: 0,
+        color:'white'
 
     },
 
     text: {
         fontSize: 20,
         marginRight: 0,
-        padding: 0
+        padding: 0,
+        color:'#ffffff'
     },
     logo: {
         fontWeight: 'bold',
-        marginBottom: 20,
-        backgroundColor: '#FFFF00',
-        color: '#000',
+        marginBottom: 0,
+        color: '#fff',
         fontSize: 100,
         fontFamily: 'Impact',
-        fontStyle: "italic"
+        fontStyle: "italic",
+        
     },
     btn: {
         marginTop: 10
