@@ -29,7 +29,9 @@ export class PrivateOffice extends Component {
             <View style={styles.container}>
             <Text style={styles.userdata}>Сотрудник: {item.Login} </Text>
             <Text style={styles.userdata}>Предупреждений: {item.Warning}</Text>
-            
+            <Text style={styles.userdata}>Должность: {item.Position}</Text>
+            <Text style={styles.userdata}>Подразделение: {item.Subdivision}</Text>
+            <Text style={styles.userdata}>Табельный номер: {item.PersonnelNumber}</Text>
            
                 <TouchableOpacity
                 style={styles.btnUpdata}
@@ -118,7 +120,8 @@ const styles = StyleSheet.create({
         fontStyle:'italic',
         margin :1,
         borderRadius: 25,
-        color:'black'
+        color:'black',
+        width:400
     },
     btnUpdata:{
         marginTop:10,
