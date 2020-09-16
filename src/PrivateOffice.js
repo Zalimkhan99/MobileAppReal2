@@ -7,6 +7,7 @@ import {
     Text,
     View,
     FlatList,
+    Button,
 
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -14,8 +15,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export class PrivateOffice extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             dataInfoUser: []
         }
@@ -42,6 +43,7 @@ export class PrivateOffice extends Component {
                 >
                     <Text style={styles.textInButton}>Обновить</Text>
                 </TouchableOpacity>
+            
                 
             </View>
         )
@@ -52,7 +54,7 @@ export class PrivateOffice extends Component {
         const {
             userId
         } = this.props.route.params;
-        var urlInfoUserHTTP = 'http://192.168.0.138/InfoBase/hs/Demo/user/';
+        var urlInfoUserHTTP = 'http://192.168.0.124/InfoBase/hs/Demo/user/';
         var urlUserGetInfo = urlInfoUserHTTP + userId;
         fetch(urlUserGetInfo, {
                 method: 'GET'
@@ -85,7 +87,14 @@ export class PrivateOffice extends Component {
                 
                 />
                 
-                
+                <Button
+                onPress={
+                    ()=>{
+                        this.props.navigation.navigate('Schedule')
+                    }
+                }
+                title='test'
+                />
             </View>
         )
     }

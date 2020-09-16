@@ -27,7 +27,7 @@ export class FormLogin extends Component {
     
     _handlePress() {
 
-        var urlAuthHTTP = 'http://192.168.0.138/InfoBase/hs/Demo/auth/';
+        var urlAuthHTTP = 'http://192.168.0.124/InfoBase/hs/Demo/auth/';
         var user = this.state.username;
         var pass = this.state.password;
         var urlСheckLoginHTTP = urlAuthHTTP + '' + user + '/' + pass;
