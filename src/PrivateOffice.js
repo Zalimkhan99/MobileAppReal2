@@ -43,6 +43,20 @@ export class PrivateOffice extends Component {
                 >
                     <Text style={styles.textInButton}>Обновить</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                style = {styles.btnUpdata}
+                onPress ={
+                    ()=>{
+                        this.props.navigation.navigate('Schedule')
+                    }
+
+                }
+                >
+                <Text style={styles.textInButton} >Цены поставщиков</Text>
+
+                </TouchableOpacity>
+               
             
                 
             </View>
@@ -87,14 +101,7 @@ export class PrivateOffice extends Component {
                 
                 />
                 
-                <Button
-                onPress={
-                    ()=>{
-                        this.props.navigation.navigate('Schedule')
-                    }
-                }
-                title='test'
-                />
+               
             </View>
         )
     }
@@ -136,7 +143,7 @@ const styles = StyleSheet.create({
         marginTop:10,
         alignItems: 'center',
         width: 150,
-        height: 40,
+        height: 50,
         borderWidth:2,
         borderRadius: 10,
         backgroundColor:'#ffff00'
