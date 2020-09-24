@@ -32,8 +32,7 @@ export class PrivateOffice extends Component {
             <Text style={styles.userdata}>Предупреждений: {item.Warning}</Text>
             <Text style={styles.userdata}>Должность: {item.Position}</Text>
             <Text style={styles.userdata}>Подразделение: {item.Subdivision}</Text>
-            <Text style={styles.userdata}>Табельный номер: {item.PersonnelNumber}</Text>
-           
+            <Text style={styles.userdata}>Табельный номер: {item.PersonnelNumber}</Text>     
                 <TouchableOpacity
                 style={styles.btnUpdata}
                 onPress= {()=> {
@@ -46,8 +45,7 @@ export class PrivateOffice extends Component {
 
                 <TouchableOpacity
                 style = {styles.btnUpdata}
-                onPress ={
-                   
+                onPress ={                 
                     ()=>{
                         const {
                             userId
@@ -59,8 +57,7 @@ export class PrivateOffice extends Component {
                 >
                 <Text style={styles.textInButton} >Цены поставщиков</Text>
 
-                </TouchableOpacity>
-               
+                </TouchableOpacity>            
             
                 
             </View>
@@ -72,8 +69,8 @@ export class PrivateOffice extends Component {
         const {
             userId
         } = this.props.route.params;
-        var urlInfoUserHTTP = 'http://192.168.0.124/InfoBase/hs/Demo/user/';
-        var urlUserGetInfo = urlInfoUserHTTP + userId;
+        let urlInfoUserHTTP = 'http://192.168.0.124/InfoBase/hs/Demo/user/';
+        let urlUserGetInfo = urlInfoUserHTTP + userId;
         fetch(urlUserGetInfo, {
                 method: 'GET'
             })
@@ -96,7 +93,6 @@ export class PrivateOffice extends Component {
         } = this.props.route.params;*/
         return (
             <View  style= {styles.container}>
-               
                 <Text style={styles.heading}>Добро пожаловать, в личный кабинет!</Text>
                 
                 <FlatList
@@ -104,9 +100,7 @@ export class PrivateOffice extends Component {
                 data={this.state.dataInfoUser}
                 renderItem = {this.renderItem}
                 
-                />
-                
-               
+                />         
             </View>
         )
     }

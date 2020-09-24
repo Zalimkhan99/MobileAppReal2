@@ -12,10 +12,8 @@ import {
     Button, 
 } from 'react-native';
 
-var authtest = false; // проверка заргестрирован ли пользователь
+var AuthorizationFlagGlobal = false; // проверка заргестрирован ли пользователь
 export class FormLogin extends Component {
-
-
 
     constructor(props) {
         super(props)
@@ -24,83 +22,61 @@ export class FormLogin extends Component {
             password: '',
         }
     }
-    checkAuthorization() {
-        if (authtest == true) {
-            this.props.navigation.navigate('Личный кабинет', {
-                userId: this.state.username
-            });
-        }
-    }
-    Request1cHTTPserv(){
+    
+    Request1cHTTPserv() {
         let urlAuthHTTP = 'http://192.168.0.124/InfoBase/hs/Demo/auth/'
         let user = this.state.username;
         let pass = this.state.password;
         let urlСheckLoginHTTP = urlAuthHTTP + '' + user + '/' + pass;
         return urlСheckLoginHTTP;
     }
-    checkRequest1cHTTPserv(){
+    checkRequest1cHTTPserv() {
         fetch(this.Request1cHTTPserv())
-            .then((response)=>{
+            .then((response) => {
                 if (!response.ok) {
-                    authtest = false;
-                
-                  return alert('Пароль или логин введен не правильно! Повторите попытку');
-                }
-                 
+                    AuthorizationFlagGlobal = false;
+    
+                    return alert('Пароль или логин введен не правильно! Повторите попытку');
+                } else return this.completedRequest1cHTTPserv();
+    
             })
-            .then((response)=>{
-                response.text();
-                let dataToJSON = JSON.parse(response);
-                let dataToStrJSON = JSON.stringify(dataToJSON, null,2);
+    
+    }
+    
+    completedRequest1cHTTPserv() {
+        AuthorizationFlagGlobal = true;
+        fetch(this.Request1cHTTPserv(), {
+                method: 'GET'
+            })
+    
+            .then((responseTextJsonLogin) => responseTextJsonLogin.text())
+            .then((responseTextJsonLogin) => {
+                var dataToJSON = JSON.parse(responseTextJsonLogin)
+                var dataToStrJSON = JSON.stringify(dataToJSON, null, 2);
                 console.log(dataToStrJSON);
             })
-            .catch((error)=>{
-                console.log('There has been a problem with your fetch operation: ' + error);
-                throw error;
+    
+            .catch((error) => {
+                alert(error);
             })
-
-        
-        
+    }
+    
+    checkAuthorization() {
+        if (AuthorizationFlagGlobal == true) {
+            this.props.navigation.navigate('Личный кабинет', {
+                userId: this.state.username
+            });
+        }
     }
     
     _handlePress() {
-         
-        fetch(this.Request1cHTTPserv())
-            .then(function (response) {
-                if (!response.ok) {
-                    authtest = false;
-                
-                  return alert('Пароль или логин введен не правильно! Повторите попытку');
-                } else {
-                    authtest = true;
-                    fetch(this.Request1cHTTPserv(), {
-                            method: 'GET'
-                        })
-
-                        .then((responseTextJsonLogin) => responseTextJsonLogin.text())
-                        .then((responseTextJsonLogin) => {
-                            var dataToJSON = JSON.parse(responseTextJsonLogin)
-                            var dataToStrJSON = JSON.stringify(dataToJSON, null, 2);
-                            console.log(dataToStrJSON);
-                        })
-
-                        .catch((error) => {
-                            console.log('There has been a problem with your fetch operation: ' + error);
-                            throw error;
-                        })
-                }
-            })
-            .catch((error)=>{
-                console.log('Global There has been a problem with your fetch operation: ' + error);
-                throw error;
-            })
+        this.checkRequest1cHTTPserv();
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.blocks}>
-           
                     <View style={styles.logo}> 
                         <Text style={styles.logo}>Real 2 </Text>
                     </View>
@@ -137,8 +113,7 @@ export class FormLogin extends Component {
                         
                             }
                         }
-                        title="Войти"
-                       
+                        title="Войти"                 
                         color="#000"
                         accessibilityLabel="send data!"
                         />
@@ -148,9 +123,7 @@ export class FormLogin extends Component {
 
         )
     }
-//onVerify = ()=>{
-  //  onVerify(this.state.username, this.state.password)
-//}
+
 }
 
 

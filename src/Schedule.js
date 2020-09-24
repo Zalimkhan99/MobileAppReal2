@@ -12,17 +12,15 @@ export class Schedule extends Component {
         }
     }
     componentDidMount=() =>{
-        var urlTest = 'http://192.168.0.124/InfoBase/hs/Demo/Registr';
+        let urlTest = 'http://192.168.0.124/InfoBase/hs/Demo/Registr';
         const {
             IdUser
         } = this.props.route.params;
         alert (IdUser)
         fetch(urlTest)
         .then((response)=>response.json())
-        .then((responseJson)=>{
-        
-          
-           this.setState({
+        .then((responseJson)=>{   
+        this.setState({
             dataJson: responseJson
         })
 
@@ -32,13 +30,10 @@ export class Schedule extends Component {
     })
     }
     
-    render(){
- 
-         
-        var elemList = this.state.dataJson
+    render(){ 
+        let elemList = this.state.dataJson
     
-        var listItem = elemList.map((element)=>
-           
+        let listItem = elemList.map((element)=> 
     <Text  style={styles.userdata}>  
     {' Дата: '}{element.Period}{'\n'}
     {' Номенклатура: '} {element.Nomenclature} {'\n'}
@@ -46,16 +41,14 @@ export class Schedule extends Component {
     {'Партнер: '}{element.Partner}
     </Text> 
     
-             
-             
-       
+
         )
     return (
-      <ScrollView style={styles.container}> 
-          <Text style={styles.headingtext}> {'Цены поставщиков'} </Text>   
-     <ScrollView style={styles.container} horizontal={true}> 
+    <ScrollView style={styles.container}> 
+        <Text style={styles.headingtext}> {'Цены поставщиков'} </Text>   
+    <ScrollView style={styles.container} horizontal={true}> 
     
-         {listItem} 
+        {listItem} 
         
         </ScrollView>
         </ScrollView>
