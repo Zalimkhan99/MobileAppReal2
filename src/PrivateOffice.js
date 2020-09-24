@@ -7,10 +7,10 @@ import {
     Text,
     View,
     FlatList,
-    Button,
+    
 
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -47,8 +47,12 @@ export class PrivateOffice extends Component {
                 <TouchableOpacity
                 style = {styles.btnUpdata}
                 onPress ={
+                   
                     ()=>{
-                        this.props.navigation.navigate('Schedule')
+                        const {
+                            userId
+                        } = this.props.route.params;
+                        this.props.navigation.navigate('Schedule',{IdUser: userId})
                     }
 
                 }
@@ -92,6 +96,7 @@ export class PrivateOffice extends Component {
         } = this.props.route.params;*/
         return (
             <View  style= {styles.container}>
+               
                 <Text style={styles.heading}>Добро пожаловать, в личный кабинет!</Text>
                 
                 <FlatList
@@ -143,14 +148,17 @@ const styles = StyleSheet.create({
         marginTop:10,
         alignItems: 'center',
         width: 150,
-        height: 50,
-        borderWidth:2,
+        
+        borderWidth:5,
         borderRadius: 10,
-        backgroundColor:'#ffff00'
+        backgroundColor:'#ffff00',
+        padding: 5,
         
     },
     textInButton:{
         fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
     }
     
 })

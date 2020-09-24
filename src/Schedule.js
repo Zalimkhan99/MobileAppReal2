@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import {Component} from 'react';
 import * as React from 'react'
-import {  Text, StyleSheet, View } from 'react-native';
+import {  Text, StyleSheet,   } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export class Schedule extends Component {
@@ -13,11 +13,14 @@ export class Schedule extends Component {
     }
     componentDidMount=() =>{
         var urlTest = 'http://192.168.0.124/InfoBase/hs/Demo/Registr';
-      
+        const {
+            IdUser
+        } = this.props.route.params;
+        alert (IdUser)
         fetch(urlTest)
         .then((response)=>response.json())
         .then((responseJson)=>{
-           
+        
           
            this.setState({
             dataJson: responseJson
@@ -31,11 +34,17 @@ export class Schedule extends Component {
     
     render(){
  
-  
+         
         var elemList = this.state.dataJson
+    
         var listItem = elemList.map((element)=>
-            
-    <Text style={styles.userdata}>{' Дата: '}{element.Period}{'\n'}{' Номенклатура: '} {element.Nomenclature} {'\n'}{" Цена:"} {element.Price}{'\n'} {'Партнер: '}{element.Partner}</Text> 
+           
+    <Text  style={styles.userdata}>  
+    {' Дата: '}{element.Period}{'\n'}
+    {' Номенклатура: '} {element.Nomenclature} {'\n'}
+    {" Цена:"} {element.Price}{'\n'} 
+    {'Партнер: '}{element.Partner}
+    </Text> 
     
              
              

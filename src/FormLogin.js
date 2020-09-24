@@ -24,22 +24,56 @@ export class FormLogin extends Component {
             password: '',
         }
     }
+    checkAuthorization() {
+        if (authtest == true) {
+            this.props.navigation.navigate('Личный кабинет', {
+                userId: this.state.username
+            });
+        }
+    }
+    Request1cHTTPserv(){
+        let urlAuthHTTP = 'http://192.168.0.124/InfoBase/hs/Demo/auth/'
+        let user = this.state.username;
+        let pass = this.state.password;
+        let urlСheckLoginHTTP = urlAuthHTTP + '' + user + '/' + pass;
+        return urlСheckLoginHTTP;
+    }
+    checkRequest1cHTTPserv(){
+        fetch(this.Request1cHTTPserv())
+            .then((response)=>{
+                if (!response.ok) {
+                    authtest = false;
+                
+                  return alert('Пароль или логин введен не правильно! Повторите попытку');
+                }
+                 
+            })
+            .then((response)=>{
+                response.text();
+                let dataToJSON = JSON.parse(response);
+                let dataToStrJSON = JSON.stringify(dataToJSON, null,2);
+                console.log(dataToStrJSON);
+            })
+            .catch((error)=>{
+                console.log('There has been a problem with your fetch operation: ' + error);
+                throw error;
+            })
+
+        
+        
+    }
     
     _handlePress() {
-
-        var urlAuthHTTP = 'http://192.168.0.124/InfoBase/hs/Demo/auth/';
-        var user = this.state.username;
-        var pass = this.state.password;
-        var urlСheckLoginHTTP = urlAuthHTTP + '' + user + '/' + pass;
-
-        fetch(urlСheckLoginHTTP)
+         
+        fetch(this.Request1cHTTPserv())
             .then(function (response) {
                 if (!response.ok) {
                     authtest = false;
-                    alert("Логин или пароль введен не правильно")
+                
+                  return alert('Пароль или логин введен не правильно! Повторите попытку');
                 } else {
                     authtest = true;
-                    fetch(urlСheckLoginHTTP, {
+                    fetch(this.Request1cHTTPserv(), {
                             method: 'GET'
                         })
 
@@ -51,9 +85,14 @@ export class FormLogin extends Component {
                         })
 
                         .catch((error) => {
-                            alert(error);
+                            console.log('There has been a problem with your fetch operation: ' + error);
+                            throw error;
                         })
                 }
+            })
+            .catch((error)=>{
+                console.log('Global There has been a problem with your fetch operation: ' + error);
+                throw error;
             })
     }
 
@@ -87,18 +126,15 @@ export class FormLogin extends Component {
 
                     <View style={styles.btn}>
                         <Button
-                        onPress={
-                            ()=> {
+                        onPress = {
+                            () => {
+                        
                                 this._handlePress();
-                                    setTimeout(()=>{
-                                        if(authtest==true){
-                                            //alert(this.state.username);
-                                            this.props.navigation.navigate('Личный кабинет',{userId: this.state.username });
-                                            
-                                        
-                                            }
-                                    },3000);        
-                                
+
+                                setTimeout(() => {
+                                    this.checkAuthorization();
+                                }, 1000);
+                        
                             }
                         }
                         title="Войти"
@@ -112,9 +148,9 @@ export class FormLogin extends Component {
 
         )
     }
-onVerify = ()=>{
-    onVerify(this.state.username, this.state.password)
-}
+//onVerify = ()=>{
+  //  onVerify(this.state.username, this.state.password)
+//}
 }
 
 
