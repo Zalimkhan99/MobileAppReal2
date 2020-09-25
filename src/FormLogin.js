@@ -24,7 +24,7 @@ export class FormLogin extends Component {
     }
     
     Request1cHTTPserv() {
-        let urlAuthHTTP = 'http://192.168.0.124/InfoBase/hs/Demo/auth/'
+        let urlAuthHTTP = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/auth/'
         let user = this.state.username;
         let pass = this.state.password;
         let urlСheckLoginHTTP = urlAuthHTTP + '' + user + '/' + pass;

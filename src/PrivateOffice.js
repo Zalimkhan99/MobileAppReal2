@@ -10,7 +10,7 @@ import {
     
 
 } from 'react-native';
-import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
@@ -55,9 +55,25 @@ export class PrivateOffice extends Component {
 
                 }
                 >
-                <Text style={styles.textInButton} >Цены поставщиков</Text>
+                <Text style={styles.textInButton} >График работы</Text>
 
-                </TouchableOpacity>            
+                </TouchableOpacity>   
+
+            <TouchableOpacity
+                style = {styles.btnUpdata}
+                onPress ={                 
+                    ()=>{
+                        const {
+                            userId
+                        } = this.props.route.params;
+                        this.props.navigation.navigate('TaskPage',{IdUser: userId})
+                    }
+
+                }
+                >
+                <Text style={styles.textInButton} >Список Задач</Text>
+
+                </TouchableOpacity>         
             
                 
             </View>
@@ -69,7 +85,7 @@ export class PrivateOffice extends Component {
         const {
             userId
         } = this.props.route.params;
-        let urlInfoUserHTTP = 'http://192.168.0.124/InfoBase/hs/Demo/user/';
+        let urlInfoUserHTTP = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/users/';
         let urlUserGetInfo = urlInfoUserHTTP + userId;
         fetch(urlUserGetInfo, {
                 method: 'GET'

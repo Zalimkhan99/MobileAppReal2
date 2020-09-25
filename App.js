@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FormLogin from './src/FormLogin'
 import PrivateOffice from './src/PrivateOffice'
 import Schedule from './src/Schedule'
+import { TaskPage } from './src/TaskPage';
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -22,6 +23,10 @@ const App = () => {
                 <Stack.Screen
                 name = "Schedule"
                 component = {Schedule}
+                />
+                <Stack.Screen
+                name = "TaskPage"
+                component ={TaskPage}
                 />
             </Stack.Navigator>
         </NavigationContainer>

@@ -12,12 +12,14 @@ export class Schedule extends Component {
         }
     }
     componentDidMount=() =>{
-        let urlTest = 'http://192.168.0.124/InfoBase/hs/Demo/Registr';
         const {
             IdUser
         } = this.props.route.params;
-        alert (IdUser)
-        fetch(urlTest)
+        let urlTest = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/Schedule/';
+        let newurl = urlTest + IdUser; 
+        
+       // alert (IdUser)
+        fetch(newurl)
         .then((response)=>response.json())
         .then((responseJson)=>{   
         this.setState({
@@ -35,17 +37,22 @@ export class Schedule extends Component {
     
         let listItem = elemList.map((element)=> 
     <Text  style={styles.userdata}>  
-    {' Дата: '}{element.Period}{'\n'}
-    {' Номенклатура: '} {element.Nomenclature} {'\n'}
-    {" Цена:"} {element.Price}{'\n'} 
-    {'Партнер: '}{element.Partner}
+    {' Дата: '}{element.Data}{'\n'}
+    {' День недели: '} {element.DayWeek} {'\n'}
+    {" Начало рабочего дня:"} {element.StartWorkDay}{'\n'} 
+    {" Конец рабочего дня:"} {element.EndWorkDay}{'\n'} 
+    {" Время прихода:"} {element.ArrivalTime}{'\n'}
+    {" время ухоода:"} {element.CareTime}{'\n'}  
+    {" Отработанное время:"} {element.WorkedTime}{'\n'} 
+    {" Опоздания:"} {element.Tardiness}{'\n'} 
+    {'Уход раньше времяни: '}{element.CareBeforeTimePage}
     </Text> 
     
 
         )
     return (
     <ScrollView style={styles.container}> 
-        <Text style={styles.headingtext}> {'Цены поставщиков'} </Text>   
+        <Text style={styles.headingtext}> {'График рабочего дня'} </Text>   
     <ScrollView style={styles.container} horizontal={true}> 
     
         {listItem} 
