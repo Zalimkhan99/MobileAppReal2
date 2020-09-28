@@ -4,13 +4,13 @@ import * as React from 'react'
 import {  Text, StyleSheet, View,   } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-export class TaskPage extends Component{
+export class TaskInfo extends Component{
     
     constructor(){
         super()
         this.state={
             dataJson:[],
-            colorChek:[]
+           
             
         }
     }
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     userdata:{
         
         borderWidth: 2,
-        backgroundColor: '#B0E0E6',
+        backgroundColor: '#ffff00',
         padding: 10,
 
         margin :10,
@@ -127,12 +127,12 @@ const styles = StyleSheet.create({
         borderWidth:1,
         
 
-    backgroundColor: '#fff',
+    backgroundColor: '#ced100',
     
     },
     comments:{
         fontSize: 14,
-        color:'#191970',
+        color:'#fff',
     fontWeight: 'bold',
     fontFamily: 'times new roman',
     },
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         fontStyle:'italic',
         height:30,
         marginBottom:10,
-        backgroundColor: '#fff',
+        backgroundColor: '#ff0000',
         
         
     },
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
         fontStyle:'italic',
         height:30,
         marginBottom:10,
-        backgroundColor:'#fff',
+        backgroundColor:'#ccff00',
         
         
     },
@@ -197,11 +197,11 @@ const styles = StyleSheet.create({
         fontStyle:'italic',
         height:30,
         marginBottom:10,
-        backgroundColor:'#fff',
+        backgroundColor:'#a5f1c0',
         
         
     },
 
 
 })
-export default TaskPage
+export default TaskInfo

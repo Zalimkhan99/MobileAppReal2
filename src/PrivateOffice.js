@@ -18,18 +18,22 @@ export class PrivateOffice extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dataInfoUser: []
+            dataInfoUser: [],
+            
         }
 
     }
     renderItem = ({
         item
     }) => {
+    
+        
+       
         return (
 
             <View style={styles.container}>
             <Text style={styles.userdata}>Сотрудник: {item.Login} </Text>
-            <Text style={styles.userdata}>Предупреждений: {item.Warning}</Text>
+            <Text style={styles.userdata}>Штрафов: {item.Warning}</Text>
             <Text style={styles.userdata}>Должность: {item.Position}</Text>
             <Text style={styles.userdata}>Подразделение: {item.Subdivision}</Text>
             <Text style={styles.userdata}>Табельный номер: {item.PersonnelNumber}</Text>     
@@ -95,6 +99,7 @@ export class PrivateOffice extends Component {
                 this.setState({
                     dataInfoUser: responseJSON.DataUser
                 })
+                
             })
             .catch((error) => {
                 console.log(error);
@@ -126,7 +131,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#cbcf00',
+        backgroundColor: '#708090',
         justifyContent: 'center',
     },
     blocks: {
@@ -145,7 +150,7 @@ const styles = StyleSheet.create({
     userdata:{
         fontSize: 24,
         borderWidth: 2,
-        backgroundColor: '#ffff00',
+        backgroundColor: '#B0E0E6',
         padding: 10,
         fontFamily:'Impact',
         fontStyle:'italic',
@@ -161,7 +166,7 @@ const styles = StyleSheet.create({
         
         borderWidth:5,
         borderRadius: 10,
-        backgroundColor:'#ffff00',
+        backgroundColor:'#B0E0E6',
         padding: 5,
         
     },

@@ -131,7 +131,7 @@ export class FormLogin extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#cbcf00',
+        backgroundColor: '#708090',
         alignItems: 'center',
         justifyContent: 'center',
     },
