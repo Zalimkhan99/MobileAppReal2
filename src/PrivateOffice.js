@@ -12,28 +12,23 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-
-
 export class PrivateOffice extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dataInfoUser: [],
-            
+            dataInfoUser: [], 
         }
-
     }
     renderItem = ({
         item
     }) => {
     
-        
-       
         return (
-
             <View style={styles.container}>
             <Text style={styles.userdata}>Сотрудник: {item.Login} </Text>
-            <Text style={styles.userdata}>Штрафов: {item.Warning}</Text>
+            <Text style={styles.userdata}>Предуприждений: {item.Warnings}</Text>
+            <Text style={styles.userdata}>Выговоров: {item.Reprimands}</Text>
+            <Text style={styles.userdata}>Строгих Выговоров: {item.SevereReprimands}</Text>
             <Text style={styles.userdata}>Должность: {item.Position}</Text>
             <Text style={styles.userdata}>Подразделение: {item.Subdivision}</Text>
             <Text style={styles.userdata}>Табельный номер: {item.PersonnelNumber}</Text>     
@@ -60,7 +55,6 @@ export class PrivateOffice extends Component {
                 }
                 >
                 <Text style={styles.textInButton} >График работы</Text>
-
                 </TouchableOpacity>   
 
             <TouchableOpacity
@@ -115,7 +109,6 @@ export class PrivateOffice extends Component {
         return (
             <View  style= {styles.container}>
                 <Text style={styles.heading}>Добро пожаловать, в личный кабинет!</Text>
-                
                 <FlatList
                 keyExtractor={item=> item.Login}
                 data={this.state.dataInfoUser}

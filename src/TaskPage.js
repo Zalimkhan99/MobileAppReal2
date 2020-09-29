@@ -4,85 +4,74 @@ import * as React from 'react'
 import {  Text, StyleSheet, View,   } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-export class TaskPage extends Component{
-    
-    constructor(){
-        super()
-        this.state={
-            dataJson:[],
-            numberTaskGl:''
-            
-        }
+export class TaskPage extends Component {
+    constructor() {
+    super();
+    this.state = {
+        dataJson: [],
+        numberTaskGl: "",
+    };
     }
-    
-    
-    componentDidMount=() =>{
-        const {
-            IdUser
-        } = this.props.route.params;
-        let urlTest = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/tasks/';
-        let newurl = urlTest + IdUser; 
-        
-       // alert (IdUser)
-        fetch(newurl)
-        .then((response)=>response.json())
-        .then((responseJson)=>{   
-        this.setState({
+    componentDidMount = () => {
+        const { IdUser } = this.props.route.params;
+        let urlTasks = "http://192.168.250.8:8080/Mobile/hs/MobileApi/tasks/";
+        let urlTasksGetHTTP = urlTasks + IdUser;
+        fetch(urlTasksGetHTTP)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            this.setState({
             dataJson: responseJson,
-            
-
+            });
         })
-
-        })
-    .catch((error)=>{
-        alert(error)
-    })
-    }
-
-    render(){ 
-        let elemList = this.state.dataJson
-        let listItem = elemList.map((element,index)=> 
-        
-    <View key={index} style={styles.userdata} >  
-    <TouchableOpacity
-        onPress ={                 
-        ()=>{
-        let numberTask = element.Number;
-        this.state.numberTaskGl=numberTask;
-        //alert(this.state.numberTaskGl);
-            this.props.navigation.navigate('TaskInfo',{IdTask:numberTask})
-        }
-
-    }
-    >
-    <Text style={styles.strStyleTask}  >{" Наименование задачи: "}{element.NameTasks}{'\n'}</Text>
-
-    
-    <Text style={styles.strStyleTask}>{" Статус заявки:"} {element.StatusApplications}{'\n'} </Text>
-
-   
-
-
-    <Text style={styles.strStyleTask}>{" Срок исполнения:"} {element.PeriodOfExecution}{'\n'}</Text>
-
-    <Text style={styles.strStyleTask}>{" Заказчик:"} {element.Customer}{'\n'}</Text>
-    </TouchableOpacity>
-    </View>
-        
-    
-
-        )
-    return (
-    
-        
-    <ScrollView style={styles.container} > 
-    <Text style={styles.headingtext}> {'Список Задач'} </Text>   
-        {listItem} 
-        
+        .catch((error) => {
+            alert(error);
+        });
+    };
+    render() {
+        let elemList = this.state.dataJson;
+        let listItem = elemList.map((element, index) => (
+        <View key={index} style={styles.userdata}>
+            <TouchableOpacity
+            onPress={() => {
+                let numberTask = element.Number;
+                this.state.numberTaskGl = numberTask;
+                this.props.navigation.navigate("TaskInfo", { IdTask: numberTask });
+            }}
+            >
+            <Text style={styles.strStyleTask}>
+                {" Наименование задачи: "}
+                {element.NameTasks}
+                {"\n"}
+            </Text>
+            <Text style={styles.strStyleTask}>
+                {" Статус заявки:"} {element.StatusApplications}
+                {"\n"}{" "}
+            </Text>
+            <Text
+                style={[
+                styles.strStyleTaskPeriodOfExecution,
+                element.CheckColor == "Красный"
+                    ? { backgroundColor: "#ff0000" }
+                    : { backgroundColor: "#fff" },
+                ]}
+            >
+                {" Срок исполнения:"} {element.PeriodOfExecution}
+                {"\n"}
+            </Text>
+            <Text style={styles.strStyleTask}>
+                {" Заказчик:"} {element.Customer}
+                {"\n"}
+            </Text>
+            </TouchableOpacity>
+        </View>
+        ));
+        return (
+        <ScrollView style={styles.container}>
+            <Text style={styles.headingtext}> {"Список Задач"} </Text>
+            {listItem}
         </ScrollView>
-    )
+        );
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -90,18 +79,12 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#708090',
         flexWrap: 'wrap',
-        flexDirection:'column',
-       
-        
-        
-        
+        flexDirection:'column',    
     },
-    userdata:{
-       
+    userdata:{   
         borderWidth: 2,
         backgroundColor: '#B0E0E6',
         padding: 10,
-
         margin :10,
         borderRadius: 25,
         color:'black',
@@ -115,8 +98,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginBottom: 20,
     },
-   
-   
     strStyleTask:{
         fontSize: 16,
         borderBottomWidth: 2,
@@ -125,10 +106,16 @@ const styles = StyleSheet.create({
         fontStyle:'italic',
         height:30,
         marginBottom:10,
-        backgroundColor: '#fff',
-       
-        
-        
+        backgroundColor: '#fff',   
+    },
+    strStyleTaskPeriodOfExecution:{
+        fontSize: 16,
+        borderBottomWidth: 2,
+        borderTopWidth: 2,  
+        fontFamily:'Impact',
+        fontStyle:'italic',
+        height:30,
+        marginBottom:10,
     },
 
 

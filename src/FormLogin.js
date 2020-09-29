@@ -35,10 +35,8 @@ export class FormLogin extends Component {
             .then((response) => {
                 if (!response.ok) {
                     AuthorizationFlagGlobal = false;
-    
                     return alert('Пароль или логин введен не правильно! Повторите попытку');
                 } else return this.completedRequest1cHTTPserv();
-    
             })
     
     }
@@ -48,14 +46,12 @@ export class FormLogin extends Component {
         fetch(this.Request1cHTTPserv(), {
                 method: 'GET'
             })
-    
             .then((responseTextJsonLogin) => responseTextJsonLogin.text())
             .then((responseTextJsonLogin) => {
                 var dataToJSON = JSON.parse(responseTextJsonLogin)
                 var dataToStrJSON = JSON.stringify(dataToJSON, null, 2);
                 console.log(dataToStrJSON);
             })
-    
             .catch((error) => {
                 alert(error);
             })
@@ -147,15 +143,14 @@ const styles = StyleSheet.create({
         borderColor: '#000',
         fontSize: 16,
         padding: 0,
-        color:'white'
-
+        color:'white',
     },
 
     text: {
         fontSize: 20,
         marginRight: 0,
         padding: 0,
-        color:'#ffffff'
+        color:'#ffffff',
     },
     logo: {
         fontWeight: 'bold',
@@ -164,10 +159,9 @@ const styles = StyleSheet.create({
         fontSize: 100,
         fontFamily: 'Impact',
         fontStyle: "italic",
-        
     },
     btn: {
-        marginTop: 10
+        marginTop: 10,
     },
 
 });

@@ -12,78 +12,63 @@ export class Schedule extends Component {
         }
     }
 
-    componentDidMount=() =>{
+    componentDidMount = () => {
         const {
             IdUser
         } = this.props.route.params;
-        let urlTest = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/Schedule/';
-        let newurl = urlTest + IdUser; 
-        
-       // alert (IdUser)
-        fetch(newurl)
-        .then((response)=>response.json())
-        .then((responseJson)=>{   
-        this.setState({
-            dataJson: responseJson
-        })
-
-        })
-    .catch((error)=>{
-        alert(error)
-    })
+        let urlScheduleInfo = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/Schedule/';
+        let urlScheduleGet = urlScheduleInfo + IdUser;
+    
+        fetch(urlScheduleGet)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({
+                    dataJson: responseJson
+                })
+            })
+            .catch((error) => {
+                alert(error)
+            })
     }
     
     render(){ 
-        
         let elemList = this.state.dataJson
-    
-        let listItem = elemList.map((element, index)=>    
-    <View key={index}  style={styles.userdata}>  
-    
-    <Text style={styles.textUserData}>{'Дата: '}{element.Data}{'\n'}</Text>
-    <Text style={styles.textUserData}>{'День недели: '} {element.DayWeek} {'\n'}</Text>
-    <Text style={styles.textUserData2}>{"Начало рабочего дня:"} {element.StartWorkDay}{'\n'} </Text>
-    <Text  style={styles.textUserData2}>{"Конец рабочего дня:"} {element.EndWorkDay}{'\n'} </Text>
-    <Text  style={styles.textUserData3}>{"Время прихода:"} {element.ArrivalTime}{'\n'}</Text>
-    <Text  style={styles.textUserData3}>{"Время ухода:"} {element.CareTime}{'\n'} </Text> 
-    <Text  style={styles.textUserData2}>{"Отработанное время:"} {element.WorkedTime}{'\n'} </Text>
-    <Text  style={styles.textUserData1}>{"Опоздания:"} {element.Tardiness}{'\n'} </Text>
-    <Text  style={styles.textUserData1}> {'Уход раньше времени: '}{element.CareBeforeTimePage}</Text>
-    </View > 
-    
+        let listItem = elemList.map((element, index)=> 
 
-        )
+            <View key={index}  style={styles.userdata}>  
+                <Text style={styles.textUserData}>{'Дата: '}{element.Data}{'\n'}</Text>
+                <Text style={styles.textUserData}>{'День недели: '} {element.DayWeek} {'\n'}</Text>
+                <Text style={styles.textUserData2}>{"Начало рабочего дня:"} {element.StartWorkDay}{'\n'} </Text>
+                <Text  style={styles.textUserData2}>{"Конец рабочего дня:"} {element.EndWorkDay}{'\n'} </Text>
+                <Text  style={styles.textUserData3}>{"Время прихода:"} {element.ArrivalTime}{'\n'}</Text>
+                <Text  style={styles.textUserData3}>{"Время ухода:"} {element.CareTime}{'\n'} </Text> 
+                <Text  style={styles.textUserData2}>{"Отработанное время:"} {element.WorkedTime}{'\n'} </Text>
+                <Text  style={styles.textUserData1}>{"Опоздания:"} {element.Tardiness}{'\n'} </Text>
+                <Text  style={styles.textUserData1}> {'Уход раньше времени: '}{element.CareBeforeTimePage}</Text>
+            </View > 
+    )
     return (
     <ScrollView style={styles.container}> 
         <Text style={styles.headingtext}> {'График рабочего дня'} </Text>   
-    <ScrollView style={styles.container}> 
-    
-        {listItem} 
-        
+        <ScrollView style={styles.container}> 
+            {listItem} 
         </ScrollView>
-        </ScrollView>
+    </ScrollView>
     )
     }
-
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#708090',
-        
+        backgroundColor: '#708090', 
         flexDirection:'column',
-        
-        
-        
     },
     userdata:{
-        
         backgroundColor: '#B0E0E6',
         padding: 10,
         margin :5,
         borderRadius: 25,
-        
     },
     headingtext:{
         fontSize: 46, 
