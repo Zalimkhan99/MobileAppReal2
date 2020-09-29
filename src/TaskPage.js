@@ -10,7 +10,7 @@ export class TaskPage extends Component{
         super()
         this.state={
             dataJson:[],
-            colorChek:[]
+            numberTaskGl:''
             
         }
     }
@@ -41,41 +41,32 @@ export class TaskPage extends Component{
 
     render(){ 
         let elemList = this.state.dataJson
-       
         let listItem = elemList.map((element,index)=> 
         
     <View key={index} style={styles.userdata} >  
-    <TouchableOpacity>
-    <Text style={styles.strStyleTask2}  >{" Наименование задачи: "}{element.NameTasks}{'\n'}</Text>
-    <Text style={styles.strStyleTask2 }>{' Номер задачи: '} {element.Number}{} {'\n'}</Text>
-    <Text style={styles.strStyleTask2}>{' Дата создания: '} {element.DateOfCreation} {'\n'}</Text>
-    <Text style={styles.strStyleTask2}>{" Назначение:"} {element.Appointment}{'\n'} </Text>
-    <Text style={styles.strStyleTask2}>{" Статус заявки:"} {element.StatusApplications}{'\n'} </Text>
-    <Text style={styles.strStyleTask2}>{" Приоритет задания:"} {element.TaskPriority}{'\n'}</Text>
-    <Text style={styles.strStyleTask2}>{" Сложность задания:"} {element.ChallengeDifficulty}{'\n'}</Text>
-    <Text style={styles.strStyleTask1}>{" Дата изменения :"} {element.DateOfChange}{'\n'} </Text>
-    <Text style={styles.strStyleTask1}>{" Количество часов:"} {element.NumberoOfHours}{'\n'} </Text>
-    </TouchableOpacity>
-    <Text style={styles.strStyleTask1}>{" Срок исполнения:"} {element.PeriodOfExecution}{'\n'}</Text>
-    <Text style={styles.strStyleTask1}>{" Дата исполнения:"} {element.DataOfExecution}{'\n'}</Text>
-    <Text style={styles.strStyleTask1}>{" Количество сдвинутых сроков:"} {element.NumberOfShiftedTerms}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Исполнитель:"} {element.Executor}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Заказчик:"} {element.Customer}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Подразделение:"} {element.Subdivision}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Куратор:"} {element.Curator}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Куратор1:"} {element.Curator1}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Куратор2:"} {element.Curator2}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Куратор3:"} {element.Curator3}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Описание:"} {element.description}{'\n'}</Text>
-    <View style = {styles.commentsBlock}> 
-    <Text> {"Комментарии пользователей:"}{'\n'} {element.ComentUser.map((elemen, inkey)=> 
+    <TouchableOpacity
+        onPress ={                 
+        ()=>{
+        let numberTask = element.Number;
+        this.state.numberTaskGl=numberTask;
+        //alert(this.state.numberTaskGl);
+            this.props.navigation.navigate('TaskInfo',{IdTask:numberTask})
+        }
+
+    }
+    >
+    <Text style={styles.strStyleTask}  >{" Наименование задачи: "}{element.NameTasks}{'\n'}</Text>
+
     
-    <Text key={inkey} >
-    <Text style = {styles.comments}>{"Дата комментария: "}{elemen.DataComment}{'\n'} </Text>
-    <Text style = {styles.comments1}>{"Автор: "}{elemen.Author}{'\n'} </Text>
-    <Text style = {styles.comments2}>{'Комемнтарий: '}{elemen.Comment}{'\n'}</Text>
-        </Text> ) }  </Text> 
-    </View>
+    <Text style={styles.strStyleTask}>{" Статус заявки:"} {element.StatusApplications}{'\n'} </Text>
+
+   
+
+
+    <Text style={styles.strStyleTask}>{" Срок исполнения:"} {element.PeriodOfExecution}{'\n'}</Text>
+
+    <Text style={styles.strStyleTask}>{" Заказчик:"} {element.Customer}{'\n'}</Text>
+    </TouchableOpacity>
     </View>
         
     
@@ -100,12 +91,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#708090',
         flexWrap: 'wrap',
         flexDirection:'column',
+       
         
         
         
     },
     userdata:{
-        
+       
         borderWidth: 2,
         backgroundColor: '#B0E0E6',
         padding: 10,
@@ -123,47 +115,10 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginBottom: 20,
     },
-    commentsBlock:{
-        borderWidth:1,
-        
-
-    backgroundColor: '#fff',
-    
-    },
-    comments:{
-        fontSize: 14,
-        color:'#191970',
-    fontWeight: 'bold',
-    fontFamily: 'times new roman',
-    },
-
-    comments1:{
-        fontSize: 14,
-        color:'#ff0000',
-    fontWeight: 'bold',
-    fontFamily: 'times new roman',
-    },
-    comments2:{
-        fontSize: 14,
-        color:'green',
-    fontWeight: 'bold',
-    fontFamily: 'times new roman',
-    },
-
+   
+   
     strStyleTask:{
-        fontSize: 18,
-        borderBottomWidth: 2,
-        borderTopWidth: 2,  
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        height:30,
-        marginBottom:10
-       // backgroundColor:'green',
-        
-        
-    },
-    strStyleTask1:{
-        fontSize: 18,
+        fontSize: 16,
         borderBottomWidth: 2,
         borderTopWidth: 2,  
         fontFamily:'Impact',
@@ -171,36 +126,11 @@ const styles = StyleSheet.create({
         height:30,
         marginBottom:10,
         backgroundColor: '#fff',
+       
         
         
     },
-    test:{
-        color:'#ffeeff'
-    },
-    strStyleTask2:{
-        fontSize: 18,
-        borderBottomWidth: 2,
-        borderTopWidth: 2,  
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        height:30,
-        marginBottom:10,
-        backgroundColor:'#fff',
-        
-        
-    },
-    strStyleTask3:{
-        fontSize: 18,
-        borderBottomWidth: 2,
-        borderTopWidth: 2,  
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        height:30,
-        marginBottom:10,
-        backgroundColor:'#fff',
-        
-        
-    },
+
 
 
 })

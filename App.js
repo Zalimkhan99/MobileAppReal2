@@ -6,6 +6,7 @@ import FormLogin from './src/FormLogin'
 import PrivateOffice from './src/PrivateOffice'
 import Schedule from './src/Schedule'
 import { TaskPage } from './src/TaskPage';
+import TaskInfo from './src/TaskInfo';
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -27,6 +28,10 @@ const App = () => {
                 <Stack.Screen
                 name = "TaskPage"
                 component ={TaskPage}
+                />
+                <Stack.Screen
+                name = "TaskInfo"
+                component ={TaskInfo}
                 />
             </Stack.Navigator>
         </NavigationContainer>

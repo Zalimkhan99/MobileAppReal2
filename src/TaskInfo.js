@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import {Component} from 'react';
 import * as React from 'react'
 import {  Text, StyleSheet, View,   } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export class TaskInfo extends Component{
     
@@ -10,7 +10,7 @@ export class TaskInfo extends Component{
         super()
         this.state={
             dataJson:[],
-           
+            idTaskInf:'',
             
         }
     }
@@ -18,11 +18,14 @@ export class TaskInfo extends Component{
     
     componentDidMount=() =>{
         const {
-            IdUser
+            IdTask
         } = this.props.route.params;
-        let urlTest = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/tasks/';
-        let newurl = urlTest + IdUser; 
-        
+        let urlTest = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/moreinfotask/';
+        let newurl = urlTest + ''+IdTask; 
+        //alert(newurl);
+        this.setState({
+            idTaskInf:IdTask,
+        })
        // alert (IdUser)
         fetch(newurl)
         .then((response)=>response.json())
@@ -41,32 +44,31 @@ export class TaskInfo extends Component{
 
     render(){ 
         let elemList = this.state.dataJson
-       
+    
         let listItem = elemList.map((element,index)=> 
         
     <View key={index} style={styles.userdata} >  
-    <TouchableOpacity>
-    <Text style={styles.strStyleTask2}  >{" Наименование задачи: "}{element.NameTasks}{'\n'}</Text>
-    <Text style={styles.strStyleTask2 }>{' Номер задачи: '} {element.Number}{} {'\n'}</Text>
-    <Text style={styles.strStyleTask2}>{' Дата создания: '} {element.DateOfCreation} {'\n'}</Text>
-    <Text style={styles.strStyleTask2}>{" Назначение:"} {element.Appointment}{'\n'} </Text>
-    <Text style={styles.strStyleTask2}>{" Статус заявки:"} {element.StatusApplications}{'\n'} </Text>
-    <Text style={styles.strStyleTask2}>{" Приоритет задания:"} {element.TaskPriority}{'\n'}</Text>
-    <Text style={styles.strStyleTask2}>{" Сложность задания:"} {element.ChallengeDifficulty}{'\n'}</Text>
-    <Text style={styles.strStyleTask1}>{" Дата изменения :"} {element.DateOfChange}{'\n'} </Text>
-    <Text style={styles.strStyleTask1}>{" Количество часов:"} {element.NumberoOfHours}{'\n'} </Text>
-    </TouchableOpacity>
-    <Text style={styles.strStyleTask1}>{" Срок исполнения:"} {element.PeriodOfExecution}{'\n'}</Text>
-    <Text style={styles.strStyleTask1}>{" Дата исполнения:"} {element.DataOfExecution}{'\n'}</Text>
-    <Text style={styles.strStyleTask1}>{" Количество сдвинутых сроков:"} {element.NumberOfShiftedTerms}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Исполнитель:"} {element.Executor}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Заказчик:"} {element.Customer}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Подразделение:"} {element.Subdivision}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Куратор:"} {element.Curator}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Куратор1:"} {element.Curator1}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Куратор2:"} {element.Curator2}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Куратор3:"} {element.Curator3}{'\n'}</Text>
-    <Text style={styles.strStyleTask3}>{" Описание:"} {element.description}{'\n'}</Text>
+    
+    <Text style={styles.strStyleTask}  >{" Наименование задачи: "}{element.NameTasks}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{' Дата создания: '} {element.DateOfCreation} {'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Назначение:"} {element.Appointment}{'\n'} </Text>
+    <Text style={styles.strStyleTask}>{" Статус заявки:"} {element.StatusApplications}{'\n'} </Text>
+    <Text style={styles.strStyleTask}>{" Приоритет задания:"} {element.TaskPriority}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Сложность задания:"} {element.ChallengeDifficulty}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Дата изменения :"} {element.DateOfChange}{'\n'} </Text>
+    <Text style={styles.strStyleTask}>{" Количество часов:"} {element.NumberoOfHours}{'\n'} </Text>
+    
+    <Text style={styles.strStyleTask}>{" Срок исполнения:"} {element.PeriodOfExecution}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Дата исполнения:"} {element.DataOfExecution}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Количество сдвинутых сроков:"} {element.NumberOfShiftedTerms}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Исполнитель:"} {element.Executor}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Заказчик:"} {element.Customer}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Подразделение:"} {element.Subdivision}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Куратор:"} {element.Curator}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Куратор1:"} {element.Curator1}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Куратор2:"} {element.Curator2}{'\n'}</Text>
+    <Text style={styles.strStyleTask}>{" Куратор3:"} {element.Curator3}{'\n'}</Text>
+    <Text style={styles.strStyleTaskDescriptoin}>{" Описание:"} {element.description}{'\n'}</Text>
     <View style = {styles.commentsBlock}> 
     <Text> {"Комментарии пользователей:"}{'\n'} {element.ComentUser.map((elemen, inkey)=> 
     
@@ -85,7 +87,7 @@ export class TaskInfo extends Component{
     
         
     <ScrollView style={styles.container} > 
-    <Text style={styles.headingtext}> {'Список Задач'} </Text>   
+    <Text style={styles.headingtext}> {'Номер задачи: '+this.state.idTaskInf} </Text>   
         {listItem} 
         
         </ScrollView>
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
     userdata:{
         
         borderWidth: 2,
-        backgroundColor: '#ffff00',
+        backgroundColor: '#B0E0E6',
         padding: 10,
 
         margin :10,
@@ -127,12 +129,12 @@ const styles = StyleSheet.create({
         borderWidth:1,
         
 
-    backgroundColor: '#ced100',
+    backgroundColor: '#fff',
     
     },
     comments:{
         fontSize: 14,
-        color:'#fff',
+        color:'#191970',
     fontWeight: 'bold',
     fontFamily: 'times new roman',
     },
@@ -151,56 +153,28 @@ const styles = StyleSheet.create({
     },
 
     strStyleTask:{
-        fontSize: 18,
-        borderBottomWidth: 2,
-        borderTopWidth: 2,  
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        height:30,
-        marginBottom:10
-       // backgroundColor:'green',
-        
-        
-    },
-    strStyleTask1:{
-        fontSize: 18,
+        fontSize: 16,
         borderBottomWidth: 2,
         borderTopWidth: 2,  
         fontFamily:'Impact',
         fontStyle:'italic',
         height:30,
         marginBottom:10,
-        backgroundColor: '#ff0000',
-        
+        backgroundColor: '#fff',
         
     },
-    test:{
-        color:'#ffeeff'
-    },
-    strStyleTask2:{
-        fontSize: 18,
-        borderBottomWidth: 2,
-        borderTopWidth: 2,  
-        fontFamily:'Impact',
+    strStyleTaskDescriptoin:{
+        fontSize: 16,
+        padding:5,
+        borderWidth: 2,  
+        fontFamily:'Times New Roman',
         fontStyle:'italic',
-        height:30,
+        height:200,
         marginBottom:10,
-        backgroundColor:'#ccff00',
-        
+        backgroundColor: '#fff',
         
     },
-    strStyleTask3:{
-        fontSize: 18,
-        borderBottomWidth: 2,
-        borderTopWidth: 2,  
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        height:30,
-        marginBottom:10,
-        backgroundColor:'#a5f1c0',
-        
-        
-    },
+    
 
 
 })
