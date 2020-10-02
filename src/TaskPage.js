@@ -14,9 +14,9 @@ export class TaskPage extends Component {
     }
     componentDidMount = () => {
         const { IdUser } = this.props.route.params;
-        let urlTasks = "http://192.168.250.8:8080/Mobile/hs/MobileApi/tasks/";
-        let urlTasksGetHTTP = urlTasks + IdUser;
-        fetch(urlTasksGetHTTP)
+        let urlTasksGetHTTP = "http://192.168.250.8:8080/Mobile/hs/MobileApi/tasks/"+ IdUser;
+        
+        setInterval(()=> fetch(urlTasksGetHTTP)
         .then((response) => response.json())
         .then((responseJson) => {
             this.setState({
@@ -25,7 +25,7 @@ export class TaskPage extends Component {
         })
         .catch((error) => {
             alert(error);
-        });
+        }),1500);
     };
     render() {
         let elemList = this.state.dataJson;
@@ -43,7 +43,13 @@ export class TaskPage extends Component {
                 {element.NameTasks}
                 {"\n"}
             </Text>
-            <Text style={styles.strStyleTask}>
+            <Text style={[
+                styles.strStyleTask,
+                element.CheckStatus =="green"
+                    ?{backgroundColor:"#00FF00"}
+                    :{backgroundColor: "#fff"}
+            
+            ]}>
                 {" Статус заявки:"} {element.StatusApplications}
                 {"\n"}{" "}
             </Text>
@@ -53,6 +59,7 @@ export class TaskPage extends Component {
                 element.CheckColor == "Красный"
                     ? { backgroundColor: "#ff0000" }
                     : { backgroundColor: "#fff" },
+                    
                 ]}
             >
                 {" Срок исполнения:"} {element.PeriodOfExecution}

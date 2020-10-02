@@ -83,8 +83,8 @@ export class PrivateOffice extends Component {
         const {
             userId
         } = this.props.route.params;
-        let urlInfoUserHTTP = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/users/';
-        let urlUserGetInfo = urlInfoUserHTTP + userId;
+        let urlUserGetInfo = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/users/'+ userId;
+        
         fetch(urlUserGetInfo, {
                 method: 'GET'
             })

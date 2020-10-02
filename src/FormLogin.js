@@ -12,7 +12,7 @@ import {
     Button, 
 } from 'react-native';
 
-var AuthorizationFlagGlobal = false; // проверка заргестрирован ли пользователь
+let AuthorizationFlagGlobal = false; // проверка заргестрирован ли пользователь
 export class FormLogin extends Component {
 
     constructor(props) {
@@ -23,11 +23,10 @@ export class FormLogin extends Component {
         }
     }
     
-    Request1cHTTPserv() {
-        let urlAuthHTTP = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/auth/'
+    Request1cHTTPserv() { 
         let user = this.state.username;
         let pass = this.state.password;
-        let urlСheckLoginHTTP = urlAuthHTTP + '' + user + '/' + pass;
+        let urlСheckLoginHTTP = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/auth/' + user + '/' + pass;
         return urlСheckLoginHTTP;
     }
     checkRequest1cHTTPserv() {
@@ -48,8 +47,8 @@ export class FormLogin extends Component {
             })
             .then((responseTextJsonLogin) => responseTextJsonLogin.text())
             .then((responseTextJsonLogin) => {
-                var dataToJSON = JSON.parse(responseTextJsonLogin)
-                var dataToStrJSON = JSON.stringify(dataToJSON, null, 2);
+                let dataToJSON = JSON.parse(responseTextJsonLogin)
+                let dataToStrJSON = JSON.stringify(dataToJSON, null, 2);
                 console.log(dataToStrJSON);
             })
             .catch((error) => {
@@ -83,6 +82,7 @@ export class FormLogin extends Component {
                         style={styles. elementForm} 
                         onChangeText ={ username=> this.setState(
                             {username})}
+                            placeholder={"Введите ФИО"}
                         />
                     
                     </View>
@@ -93,6 +93,7 @@ export class FormLogin extends Component {
                         style={styles.elementForm} 
                         secureTextEntry={true}
                         onChangeText = {password=> this.setState({password})}
+                        placeholder={""}
                         />
                     </View>
 

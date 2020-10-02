@@ -16,8 +16,8 @@ export class Schedule extends Component {
         const {
             IdUser
         } = this.props.route.params;
-        let urlScheduleInfo = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/Schedule/';
-        let urlScheduleGet = urlScheduleInfo + IdUser;
+        let urlScheduleGet = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/Schedule/'+ IdUser;
+        
     
         fetch(urlScheduleGet)
             .then((response) => response.json())
