@@ -114,6 +114,35 @@ export class FormLogin extends Component {
                         color="#000"
                         accessibilityLabel="send data!"
                         />
+
+                                                <Button
+                        onPress = {
+                            () => {
+                                
+                                let data = JSON.stringify({name:this.state.username, password: this.state.password});
+                                //console.log(data);
+                                var xhr = new XMLHttpRequest();
+                                xhr.withCredentials = true;
+                                
+                                xhr.addEventListener("readystatechange", function() {
+                                if(this.readyState === 4) {
+                                console.log(this.responseText);
+                                data= this.responseText;
+                                }
+                                });
+                                
+                                xhr.open("POST", "https://dostavka-deluxe.ru/TestPost.php");
+                                xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                                console.log(data);
+                                xhr.send(data);
+                                
+                            }
+                        }
+                        title="ВetaTest"                 
+                        color="#000"
+                        accessibilityLabel="ВetaTest"
+                        />
+                        
                     </View>                  
                 </View>
             </View>
