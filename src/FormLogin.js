@@ -6,11 +6,12 @@ import  {
     Component
 } from 'react';
 import {
-    StyleSheet,
     Text,
     View,
     Button, 
+    Image
 } from 'react-native';
+import styles   from "./Style/FormLoginStyle";
 
 let AuthorizationFlagGlobal = false; // проверка заргестрирован ли пользователь
 export class FormLogin extends Component {
@@ -71,9 +72,21 @@ export class FormLogin extends Component {
     render() {
         return (
             <View style={styles.container}>
+            
+            <Image 
+            style={{
+               // backgroundColor: '#ccc',
+                //flex: 1,
+                top:80,
+                position: 'relative',
+                width: 285,
+                height: 100,
+                justifyContent: 'center',
+            }}
+                source={require('./Logo.png')}></Image>
                 <View style={styles.blocks}>
                     <View style={styles.logo}> 
-                        <Text style={styles.logo}>Real 2 </Text>
+                    
                     </View>
 
                     <View >
@@ -93,7 +106,7 @@ export class FormLogin extends Component {
                         style={styles.elementForm} 
                         secureTextEntry={true}
                         onChangeText = {password=> this.setState({password})}
-                        placeholder={""}
+                        placeholder={"*****"}
                         />
                     </View>
 
@@ -111,38 +124,9 @@ export class FormLogin extends Component {
                             }
                         }
                         title="Войти"                 
-                        color="#000"
+                        color="#0E4DA4"
                         accessibilityLabel="send data!"
                         />
-
-                                                <Button
-                        onPress = {
-                            () => {
-                                
-                                let data = JSON.stringify({name:this.state.username, password: this.state.password});
-                                //console.log(data);
-                                var xhr = new XMLHttpRequest();
-                                xhr.withCredentials = true;
-                                
-                                xhr.addEventListener("readystatechange", function() {
-                                if(this.readyState === 4) {
-                                console.log(this.responseText);
-                                data= this.responseText;
-                                }
-                                });
-                                
-                                xhr.open("POST", "https://dostavka-deluxe.ru/TestPost.php");
-                                xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                                console.log(data);
-                                xhr.send(data);
-                                
-                            }
-                        }
-                        title="ВetaTest"                 
-                        color="#000"
-                        accessibilityLabel="ВetaTest"
-                        />
-                        
                     </View>                  
                 </View>
             </View>
@@ -151,49 +135,5 @@ export class FormLogin extends Component {
     }
 
 }
-
-
-// подключение стилей
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#708090',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    blocks: {
-        flexDirection: 'column',
-
-    },
-    elementForm: {
-        width: 300,
-        height: 42,
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: '#000',
-        fontSize: 16,
-        padding: 0,
-        color:'white',
-    },
-
-    text: {
-        fontSize: 20,
-        marginRight: 0,
-        padding: 0,
-        color:'#ffffff',
-    },
-    logo: {
-        fontWeight: 'bold',
-        marginBottom: 0,
-        color: '#fff',
-        fontSize: 100,
-        fontFamily: 'Impact',
-        fontStyle: "italic",
-    },
-    btn: {
-        marginTop: 10,
-    },
-
-});
 
 export default FormLogin;

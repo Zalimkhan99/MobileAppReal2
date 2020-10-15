@@ -2,8 +2,6 @@ import React, {
     Component
 } from 'react';
 import {
-
-    StyleSheet,
     Text,
     View,
     FlatList,
@@ -11,6 +9,7 @@ import {
 
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import styles from "./Style/PrivateOfficeStyle";
 
 export class PrivateOffice extends Component {
     constructor(props) {
@@ -25,12 +24,13 @@ export class PrivateOffice extends Component {
     
         return (
             <View style={styles.container}>
-            <Text style={styles.userdata}>Сотрудник: {item.Login} </Text>
+            <Text style={styles.heading}> {item.Login} </Text>
+        <Text style={styles.userdataSubdivisionAndPosition}>{item.Subdivision}{`\n`}{item.Position}</Text>
             <Text style={styles.userdata}>Предуприждений: {item.Warnings}</Text>
             <Text style={styles.userdata}>Выговоров: {item.Reprimands}</Text>
             <Text style={styles.userdata}>Строгих Выговоров: {item.SevereReprimands}</Text>
-            <Text style={styles.userdata}>Должность: {item.Position}</Text>
-            <Text style={styles.userdata}>Подразделение: {item.Subdivision}</Text>
+           
+            
             <Text style={styles.userdata}>Табельный номер: {item.PersonnelNumber}</Text>     
                 <TouchableOpacity
                 style={styles.btnUpdata}
@@ -101,14 +101,12 @@ export class PrivateOffice extends Component {
 
     }
 
-
     render() {
         /*const {
             userId
         } = this.props.route.params;*/
         return (
             <View  style= {styles.container}>
-                <Text style={styles.heading}>Добро пожаловать, в личный кабинет!</Text>
                 <FlatList
                 keyExtractor={item=> item.Login}
                 data={this.state.dataInfoUser}
@@ -120,54 +118,5 @@ export class PrivateOffice extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#708090',
-        justifyContent: 'center',
-    },
-    blocks: {
-        flexDirection: 'column',
 
-    },
-    
-    heading: {
-        fontWeight: 'bold',
-        marginBottom: 20,
-        color: '#fff',
-        fontSize: 36,
-        fontFamily: 'Impact',
-        fontStyle: "italic"
-    },
-    userdata:{
-        fontSize: 24,
-        borderWidth: 2,
-        backgroundColor: '#B0E0E6',
-        padding: 10,
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        margin :1,
-        borderRadius: 25,
-        color:'black',
-        width:400
-    },
-    btnUpdata:{
-        marginTop:10,
-        alignItems: 'center',
-        width: 150,
-        
-        borderWidth:5,
-        borderRadius: 10,
-        backgroundColor:'#B0E0E6',
-        padding: 5,
-        
-    },
-    textInButton:{
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    }
-    
-})
 export default PrivateOffice

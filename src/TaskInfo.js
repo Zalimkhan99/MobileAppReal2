@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
 import {Component} from 'react';
 import * as React from 'react'
-import {  Text, StyleSheet, View,   } from 'react-native';
+import {  Text, View,   } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-
+import styles from "./Style/TaskInfoStyle";
 export class TaskInfo extends Component{
     
     constructor() {
@@ -11,12 +11,16 @@ export class TaskInfo extends Component{
         this.state = {
             dataJson: [],
             idTaskInf: '',
+            idUserTaskInfo: '',
         }
     }
 
     componentDidMount = () => {
         const { IdTask } = this.props.route.params;
-        let urlTaskInfoGet = "http://192.168.250.8:8080/Mobile/hs/MobileApi/moreinfotask/"+ "" + IdTask;
+        const { idUserTaskInfo } = this.props.route.params;
+        
+        let urlTaskInfoGet = "http://192.168.250.8:8080/Mobile/hs/MobileApi/moreinfotask/"+ "" + IdTask+"/"+idUserTaskInfo;
+       // alert(urlTaskInfoGet);
         this.setState({
             idTaskInf: IdTask,
         });
@@ -28,17 +32,18 @@ export class TaskInfo extends Component{
             });
             })
             .catch((error) => {
-            alert(error);
+            console.log(error);
             });
         };
-
+        
         render() {
+            
             let elemList = this.state.dataJson
-        
+            
             let listItem = elemList.map((element, index) =>
-        
+            
             <View key={index} style={styles.userdata}>  
-            <Text style={styles.strStyleTask}  >{" Наименование задачи: "}{element.NameTasks}{'\n'}</Text>
+            <Text style={styles.strStyleTask}  >{" Наименование задачи: "}{element.NameTasks} {'\n'}</Text>
             <Text style={styles.strStyleTask}>{' Дата создания: '} {element.DateOfCreation} {'\n'}</Text>
             <Text style={styles.strStyleTask}>{" Назначение:"} {element.Appointment}{'\n'} </Text>
             <Text style={styles.strStyleTask}>{" Статус заявки:"} {element.StatusApplications}{'\n'} </Text>
@@ -78,73 +83,5 @@ export class TaskInfo extends Component{
             )
         }
     }
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#708090',
-        flexWrap: 'wrap',
-        flexDirection:'column',  
-    },
-    userdata:{
-        borderWidth: 2,
-        backgroundColor: '#B0E0E6',
-        padding: 10,
-        margin :10,
-        borderRadius: 25,
-        color:'black',
-    },
-    headingtext:{
-        fontSize: 46, 
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontFamily: 'Impact',
-        fontStyle: "italic",
-        color: '#fff',
-        marginBottom: 20,
-    },
-    commentsBlock:{
-        borderWidth:1,    
-        backgroundColor: '#fff',
-    },
-    comments:{
-        fontSize: 14,
-        color:'#191970',
-        fontWeight: 'bold',
-        fontFamily: 'times new roman',
-    },
-    comments1:{
-        fontSize: 14,
-        color:'#ff0000',
-        fontWeight: 'bold',
-        fontFamily: 'times new roman',
-    },
-    comments2:{
-        fontSize: 14,
-        color:'green',
-        fontWeight: 'bold',
-        fontFamily: 'times new roman',
-    },
 
-    strStyleTask:{
-        fontSize: 16,
-        borderBottomWidth: 2,
-        borderTopWidth: 2,  
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        height:30,
-        marginBottom:10,
-        backgroundColor: '#fff',
-        
-    },
-    strStyleTaskDescriptoin:{
-        fontSize: 16,
-        padding:5,
-        borderWidth: 2,  
-        fontFamily:'Times New Roman',
-        fontStyle:'italic',
-        height:200,
-        marginBottom:10,
-        backgroundColor: '#fff',   
-    },
-})
 export default TaskInfo
