@@ -3,23 +3,20 @@ import {StyleSheet,} from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexWrap: 'wrap',
-        flexDirection:'column', 
         width:500,  
         padding:5, 
     },
-    glBlockTask:{
+    notificationAndBlockTask:{
         flexDirection:'row',
     },
-    containerChild: {
-        flexDirection:'row', 
+    globalContainerTask: {
         borderWidth:1,
         padding:10, 
         marginBottom:5,
         width:347 
     },
 
-    blockTask:{
+    blocksInTasks:{
         flexDirection:'row',
         borderColor:'silver',
         borderBottomWidth:1,

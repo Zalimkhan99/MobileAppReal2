@@ -35,8 +35,8 @@ export class TaskPage extends Component {
         let elemList = this.state.dataJson;
         
         let listItem = elemList.map((element, index) => (
-            <View key={index} style={styles.glBlockTask}>
-        <View key={index} style={styles.containerChild}>
+            <View key={index} style={styles.notificationAndBlockTask}>
+        <View key={index} style={styles.globalContainerTask}>
             <TouchableOpacity
             onPress={() => {
                 const { IdUser } = this.props.route.params;
@@ -59,7 +59,7 @@ export class TaskPage extends Component {
                 
             }}
             >
-        <View style={styles.blockTask}>
+        <View style={styles.blocksInTasks}>
             <Text style={[ styles.statusAndNumberTaskAndPeriodOfExecution ]}>{"№"}{element.Number} </Text>
             <Text style={[
                 styles.statusAndNumberTaskAndPeriodOfExecution,
@@ -119,7 +119,7 @@ export class TaskPage extends Component {
 
         <Text style={styles.notification}> {element.notification } </Text>
         
-        </View>
+        </View> //ww
         
         ));
         return (

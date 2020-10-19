@@ -2,70 +2,110 @@ import {StyleSheet,} from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#708090',
-        flexWrap: 'wrap',
-        flexDirection:'column',  
+       // backgroundColor: '#708090',
+       // flexWrap: 'wrap',
+        //flexDirection:'column',  
     },
-    userdata:{
-        borderWidth: 2,
-        backgroundColor: '#B0E0E6',
-        padding: 10,
-        margin :10,
-        borderRadius: 25,
-        color:'black',
-    },
-    headingtext:{
-        fontSize: 46, 
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontFamily: 'Impact',
-        fontStyle: "italic",
-        color: '#fff',
-        marginBottom: 20,
-    },
-    commentsBlock:{
-        borderWidth:1,    
-        backgroundColor: '#fff',
-    },
-    comments:{
-        fontSize: 14,
-        color:'#191970',
-        fontWeight: 'bold',
-        fontFamily: 'times new roman',
-    },
-    comments1:{
-        fontSize: 14,
-        color:'#ff0000',
-        fontWeight: 'bold',
-        fontFamily: 'times new roman',
-    },
-    comments2:{
-        fontSize: 14,
-        color:'green',
-        fontWeight: 'bold',
-        fontFamily: 'times new roman',
-    },
+    globalBlockMoreTaskInfo:{
+        borderWidth: 1,
+        borderColor:'#fff',
+          backgroundColor: '#fff',
+         // padding: 10,
+         width:340,
+          margin :10,
+          
+          color:'black',
+      },
 
-    strStyleTask:{
-        fontSize: 16,
-        borderBottomWidth: 2,
-        borderTopWidth: 2,  
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        height:30,
-        marginBottom:10,
-        backgroundColor: '#fff',
+    blocksInTasks:{
+        flexDirection:'row',
+        width:320, 
         
     },
+
+    statusAndNumberTask:{
+        width:230,
+    },
+    taskName:{
+        borderColor:'silver',
+        borderBottomWidth:1,
+        borderTopWidth:1,
+        width:320,
+        marginBottom:5,
+    },
+    customerAndExecutor:{
+        color:'silver',
+    },
+    blockTaskPeriodOfExecution:{
+        flexDirection:'row',
+    },
+    PeriodOfExecution:{
+        marginTop:6,
+        width:240,
+        
+
+    },
+    infoTaskAppointment:{
+        marginTop:6,
+        width:192,
+        
+
+    },
+    infoTaskPrioritet:{
+        marginTop:6,
+        width:259,
+        
+
+    },
+
+    infoTaskHourse:{
+        marginTop:6,
+        width:290,
+
+    },
+
+
+
+    commentsBlock:{
+        //borderBottomWidth:1,
+        //borderColor:'#DCDCDC',
+        padding:10,
+      //  flexDirection:'column',
+       // backgroundColor:'#DCDCDC',
+    },
+ 
+    comments:{
+        fontSize: 14,
+        //color:'#191970',
+        //fontWeight: 'bold',
+        fontFamily: 'times new roman',
+    },
+    commentsUsers:{
+        fontSize: 12,
+        color:'silver',
+        
+        fontFamily: 'times new roman',
+    },
+    commentsHead:{
+        fontSize: 14,
+    //    color:'green',
+        fontWeight: '600',
+        fontFamily: 'Inter',
+        marginBottom:20,
+    },
+
+   
     strStyleTaskDescriptoin:{
-        fontSize: 16,
+        fontSize: 14,
+
         padding:5,
-        borderWidth: 2,  
-        fontFamily:'Times New Roman',
-        fontStyle:'italic',
-        height:200,
+        borderTopWidth: 1, 
+        borderBottomWidth: 1, 
+        fontFamily: 'Inter',
+        borderColor:'silver',
+        //height:200,
         marginBottom:10,
-        backgroundColor: '#fff',   
+        //backgroundColor: '#fff',   
     },
     
 })
