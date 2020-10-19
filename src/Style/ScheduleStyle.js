@@ -3,65 +3,59 @@ import {StyleSheet,} from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#708090', 
-        flexDirection:'column',
+        padding:5,
+        
     },
-    userdata:{
-        backgroundColor: '#B0E0E6',
-        padding: 10,
-        margin :5,
-        borderRadius: 25,
+ 
+    globalBlockSchedule:{
+        borderWidth:2,
+        width:270,
+        padding:3.5,
+        marginBottom:5,
+      
+       
     },
-    headingtext:{
-        fontSize: 46, 
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontFamily: 'Impact',
-        fontStyle: "italic",
-        color: '#fff',
-        marginBottom: 20,
+    blockCurrentDate:{
+        flexDirection:'row',
+       
     },
-    textUserData:{
-        fontSize: 24,
-        borderBottomWidth: 2,
-        borderTopWidth: 2, 
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        color:'black',
-        height:35,
-        marginBottom:10
+    currentDate:{
+        fontSize: 14,
+        marginRight:167,
+        fontFamily:'Inter',
+        fontStyle:'normal',
+        fontWeight:'normal',
+        lineHeight:20,
+        letterSpacing:0.005
+    },
+    WorkedTime:{
+        fontSize: 14,
+        marginRight:78,
+        fontFamily:'Inter',
+        fontStyle:'normal',
+        fontWeight:'normal',
+        lineHeight:20,
+        letterSpacing:0.005,
+    },
+ 
+
+
+    UserSchedule:{
+        fontSize: 14,
+        marginRight:130,
+        fontFamily:'Inter',
+        fontStyle:'normal',
+        fontWeight:'normal',
+        lineHeight:20,
+        letterSpacing:0.005,
+        color:'green', 
     },
 
-    textUserData1:{
-        fontSize: 24,
-        borderBottomWidth: 2,
-        borderTopWidth: 2, 
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        color:'#ff0000',
-        height:35,
-        marginBottom:10
+    Warning:{
+        color:'red'
     },
-    textUserData2:{
-        fontSize: 24,
-        borderBottomWidth: 2,
-        borderTopWidth: 2, 
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        color:'green',
-        height:35,
-        marginBottom:10
-    },
-    textUserData3:{
-        fontSize: 24,
-        borderBottomWidth: 2,
-        borderTopWidth: 2, 
-        fontFamily:'Impact',
-        fontStyle:'italic',
-        color:'#fff',
-        height:35,
-        marginBottom:10
-    }
+
+
 
 })
 export default styles;

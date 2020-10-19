@@ -35,8 +35,8 @@ export class TaskPage extends Component {
         let elemList = this.state.dataJson;
         
         let listItem = elemList.map((element, index) => (
-            <View key={index} style={styles.containerChild}>
-        <View key={index} style={styles.userdata}>
+            <View key={index} style={styles.glBlockTask}>
+        <View key={index} style={styles.containerChild}>
             <TouchableOpacity
             onPress={() => {
                 const { IdUser } = this.props.route.params;
@@ -44,7 +44,7 @@ export class TaskPage extends Component {
                 let numberTask = element.Number;
                 this.state.numberTaskGl = numberTask;
                 
-                this.props.navigation.navigate("TaskInfo", { IdTask: numberTask, idUserTaskInfo: IdUser });
+                this.props.navigation.navigate("К задачам", { IdTask: numberTask, idUserTaskInfo: IdUser });
                 let urlTasksGetHTTP = "http://192.168.250.8:8080/Mobile/hs/MobileApi/tasks/"+ IdUser;
                 fetch(urlTasksGetHTTP)
                 .then((response) => response.json())
@@ -59,62 +59,73 @@ export class TaskPage extends Component {
                 
             }}
             >
+        <View style={styles.blockTask}>
+            <Text style={[ styles.statusAndNumberTaskAndPeriodOfExecution ]}>{"№"}{element.Number} </Text>
             <Text style={[
-                
-                styles.strStyleTaskName
-            
-            ]}>
-                {" Наименование задачи: "}
-                {element.NameTasks}
-                
-            </Text>
-            
-            <Text style={[
-                styles.strStyleTask,
+                styles.statusAndNumberTaskAndPeriodOfExecution,
                 element.CheckStatus =="green"
-                    ?{backgroundColor:"#00FF00"}
-                    :{backgroundColor: "#fff"}
-            
-            ]}>
-                {" Статус заявки:"} {element.StatusApplications}
-                {"\n"}{" "}
-            </Text>
-            <Text
-                style={[
-                styles.strStyleTaskPeriodOfExecution,
-                element.CheckColor == "Красный"
-                    ? { backgroundColor: "#ff0000" }
-                    : { backgroundColor: "#fff" },
+                    ?{color:"#1BB55C"}
+                    : element.CheckStatus == "black"
+                    ?{color:"#000"}
+                    :element.CheckStatus=="yellow"
+                    ?{color:"#FFBB12"}
+                    :{color:"#0E4DA4"}
                     
-                ]}
-            >
-                {" Срок исполнения:"} {element.PeriodOfExecution}
-                {"\n"}
+            ]}>
+                {element.StatusApplications}
+                 
+                </Text>
+            </View>
+            
+            <Text style={[styles.taskName ]}>{element.NameTasks}</Text>
+            
+
+
+          
+            <Text style={styles.customerAndExecutor}>{"Заказчик"}</Text>
+            <Text style={{fontSize:12, marginBottom:5}}>{element.Customer}</Text>
+            <Text style={styles.customerAndExecutor}>{"Исполнитель"} </Text>
+        <Text style={{fontSize:12}}>{element.Executor}{`\n`}</Text>
+
+        <View style={styles.blockTaskPeriodOfExecution}>
+            <Text style={[styles.statusAndNumberTaskAndPeriodOfExecution,
+                            element.CheckColor=="Красный"
+                            ?{color:"#FF0000"}
+                            :element.CheckStatus =="green"
+                            ?{color:"#1BB55C"}
+                            : element.CheckStatus == "black"
+                            ?{color:"#000"}
+                            :element.CheckStatus=="yellow"
+                            ?{color:"#FFBB12"}
+                            :{color:"#0E4DA4"}
+                            ]}>{"Срок исполнения:"}</Text>
+            <Text style={[
+                element.CheckColor=="Красный"
+                ?{color:"#FF0000"}
+                :element.CheckStatus =="green"
+                ?{color:"#1BB55C"}
+                : element.CheckStatus == "black"
+                ?{color:"#000"}
+                :element.CheckStatus=="yellow"
+                ?{color:"#FFBB12"}
+                :{color:"#0E4DA4"}
+                 ]}> {element.PeriodOfExecution} 
             </Text>
-            <Text style={styles.strStyleTask}>
-                {" Заказчик:"} {element.Customer}
-                {"\n"}
-            </Text>
+        </View>
+           
             </TouchableOpacity>
            
-        </View>
+        </View >
 
         <Text style={styles.notification}> {element.notification } </Text>
         
         </View>
+        
         ));
         return (
         <ScrollView style={styles.container}>
-            <Text style={styles.headingtext}> {"Список Задач"} </Text>
-            <TouchableOpacity
-                style={styles.btnUpdata}
-                onPress= {()=> {
-                    this.componentDidMount();
-                }
-            }
-                >
-                    <Text style={styles.textInButton}>Обновить</Text>
-                </TouchableOpacity>
+          
+          
             {listItem}
             
          

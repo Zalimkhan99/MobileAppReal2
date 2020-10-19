@@ -5,16 +5,47 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FormLogin from './src/FormLogin'
 import PrivateOffice from './src/PrivateOffice'
 import Schedule from './src/Schedule'
-import { TaskPage } from './src/TaskPage';
+import {TaskPage}  from './src/TaskPage';
 import TaskInfo from './src/TaskInfo';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+function SecondComponent() {
+    return (
+        <NavigationContainer>
+         
+        <Tab.Navigator>
+        <Stack.Screen
+        name="Логин"
+        component = {FormLogin}
+        />
+        <Tab.Screen
+        name="Кабинет"
+        component = {PrivateOffice}
+        />
+          <Tab.Screen
+        name = "Задачи"
+        component ={TaskPage}
+        />
+        <Tab.Screen
+        name = "График"
+        component = {Schedule}
+        />
+      
+
+    </Tab.Navigator>
+    </NavigationContainer>
+    );
+  }
+
+
 
 const App = () => {
     return(
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
-                name="Login"
+                name="Вход"
                 component = {FormLogin}
                 />
                 <Stack.Screen
@@ -22,20 +53,26 @@ const App = () => {
                 component = {PrivateOffice}
                 />
                 <Stack.Screen
-                name = "Schedule"
+                name = "График"
                 component = {Schedule}
                 />
                 <Stack.Screen
-                name = "TaskPage"
+                name = "Задачи"
                 component ={TaskPage}
                 />
                 <Stack.Screen
-                name = "TaskInfo"
+                name = "К задачам"
                 component ={TaskInfo}
                 />
+                
             </Stack.Navigator>
-        </NavigationContainer>
 
+            
+        </NavigationContainer>
+        
     )
 }
+const PrivatStack = createStackNavigator();
+
+
 export default App
