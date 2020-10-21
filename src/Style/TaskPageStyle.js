@@ -47,7 +47,29 @@ const styles = StyleSheet.create({
         fontSize:76,
     },
 
-
+    buttonContainer:{
+        //top:500,
+        width:600,
+        alignItems:'center',
+        position:'relative',
+        flexDirection:'row',
+        alignSelf:'flex-start',
+        left:25,
+        //backgroundColor:'silver',
+    },
+    
+    btnNavigation:{
+        position:'relative',
+        margin:10,
+        alignItems: 'center',
+        //width: 150,
+        //margin:1,
+        borderWidth:1,
+        borderRadius: 5,
+        backgroundColor:'#F0F0F0',
+        padding: 5,
+        borderColor:'#C0C0C0'
+    },
 })
 
 export default styles

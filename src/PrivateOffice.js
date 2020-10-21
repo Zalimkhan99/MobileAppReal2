@@ -5,6 +5,7 @@ import {
     Text,
     View,
     FlatList,
+    Image
     
 
 } from 'react-native';
@@ -24,8 +25,8 @@ export class PrivateOffice extends Component {
     renderItem = ({
         item
     }) => {
-        const vseok = <Text style={styles.MotivationText}>Пока норм, ВАЦ) {`\n`}{`\n`}<Text style={styles.MotivationTextLetter}>Но лучше проверь задачник </Text></Text>;
-        const pized = <Text  style={styles.MotivationText}>Скоро сбагрят {`\n`}{`\n`} <Text style={styles.MotivationTextLetter}>Советую начать искать новую работу</Text></Text>
+        const vseok = <Text style={styles.MotivationText}>Пока норм) {`\n`}{`\n`}<Text style={styles.MotivationTextLetter}>Но лучше проверь задачник </Text></Text>;
+        const pized = <Text  style={styles.MotivationText}>Держись {`\n`}{`\n`} <Text style={styles.MotivationTextLetter}>Советую изучить положение о мотивации</Text></Text>
         return (
             <View style={styles.container}>
             <Text style={styles.heading}> {item.Login} </Text>
@@ -34,7 +35,7 @@ export class PrivateOffice extends Component {
             <Text style={styles.punishmentText}>{item.SevereReprimands}</Text>
             <Text style={styles.numberOfFines}>Выговоров:</Text>
             <Text style={styles.punishmentText}>{item.Reprimands}</Text>
-            <Text style={styles.numberOfFines}>Предуприждений:</Text>
+            <Text style={styles.numberOfFines}>Предупреждений:</Text>
             <Text style={styles.punishmentText}>{item.Warnings}</Text>
 
         
@@ -99,7 +100,14 @@ export class PrivateOffice extends Component {
                 }
             }
                 >
-                    <Text style={styles.textInButton}>Кабинет</Text>
+                    <Image 
+            style={{
+                position: 'relative',
+                width: 70,
+                height: 70,
+                justifyContent: 'center',
+            }}
+                source={require('./img/Destination1.png')}></Image>
                 </TouchableOpacity>
                                
 
@@ -115,7 +123,14 @@ export class PrivateOffice extends Component {
 
                 }
                 >
-                <Text style={styles.textInButton}>Задачи</Text>
+                <Image 
+            style={{
+                position: 'relative',
+                width: 70,
+                height: 70,
+                justifyContent: 'center',
+            }}
+                source={require('./img/Destination2.png')}></Image>
 
                 </TouchableOpacity>    
                 <TouchableOpacity
@@ -130,7 +145,14 @@ export class PrivateOffice extends Component {
 
                 }
                 >
-                <Text style={styles.textInButton} >График</Text>
+              <Image 
+            style={{
+                position: 'relative',
+                width: 70,
+                height: 70,
+                justifyContent: 'center',
+            }}
+                source={require('./img/Destination3.png')}></Image>
                 </TouchableOpacity>   
                 </View>
             

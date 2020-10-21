@@ -5,12 +5,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FormLogin from './src/FormLogin'
 import PrivateOffice from './src/PrivateOffice'
 import Schedule from './src/Schedule'
-import {TaskPage}  from './src/TaskPage';
+import TaskPage from './src/TaskPage';
 import TaskInfo from './src/TaskInfo';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
-function SecondComponent() {
+import BottomTabNavigator from './src/screen/BottomTabNavigator'
+import{MainStackNavigator} from './src/screen/MainStackNavigator'
+// Stack = createStackNavigator();
+//const Tab = createBottomTabNavigator();
+/*function SecondComponent() {
     return (
         <NavigationContainer>
          
@@ -37,36 +39,14 @@ function SecondComponent() {
     </NavigationContainer>
     );
   }
-
+*/
 
 
 const App = () => {
     return(
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen
-                name="Вход"
-                component = {FormLogin}
-                />
-                <Stack.Screen
-                name="Личный кабинет"
-                component = {PrivateOffice}
-                />
-                <Stack.Screen
-                name = "График"
-                component = {Schedule}
-                />
-                <Stack.Screen
-                name = "Задачи"
-                component ={TaskPage}
-                />
-                <Stack.Screen
-                name = "К задачам"
-                component ={TaskInfo}
-                />
-                
-            </Stack.Navigator>
 
+      <MainStackNavigator></MainStackNavigator>
             
         </NavigationContainer>
         

@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        //height:600
+      //  height:850
     },
     
     heading: {
@@ -58,12 +58,14 @@ const styles = StyleSheet.create({
     },
 
     buttonContainer:{
+        //top:20,
+        
         flexDirection:'row',
     },
     
     btnNavigation:{
         position:'relative',
-        //marginTop:10,
+        marginRight:20,
         alignItems: 'center',
         //width: 150,
         margin:1,
@@ -74,12 +76,7 @@ const styles = StyleSheet.create({
         borderColor:'#C0C0C0'
     },
 
-    textInButton:{
-        fontSize: 24,
-        fontWeight: '100',
-        textAlign: 'center',
-        color:'#C0C0C0'
-    },
+
     
     numberOfFines:{
         position: 'relative',
