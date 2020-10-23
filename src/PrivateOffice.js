@@ -11,9 +11,7 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from "./Style/PrivateOfficeStyle";
-
-
-
+import btnStyles from "./Style/BottomNavigatuinStyle";
 
 export class PrivateOffice extends Component {
     constructor(props) {
@@ -28,9 +26,10 @@ export class PrivateOffice extends Component {
         const vseok = <Text style={styles.MotivationText}>Пока норм) {`\n`}{`\n`}<Text style={styles.MotivationTextLetter}>Но лучше проверь задачник </Text></Text>;
         const pized = <Text  style={styles.MotivationText}>Держись {`\n`}{`\n`} <Text style={styles.MotivationTextLetter}>Советую изучить положение о мотивации</Text></Text>
         return (
-            <View style={styles.container}>
-            <Text style={styles.heading}> {item.Login} </Text>
-        <Text style={styles.userdataSubdivisionAndPosition}>{item.Subdivision}{`\n`}{item.Position}</Text>
+        <View style={styles.container}>
+
+            <Text style={styles.heading}>{item.Login} </Text>
+            <Text style={styles.userdataSubdivisionAndPosition}>{item.Subdivision}{`\n`}{item.Position}</Text>
             <Text style={styles.numberOfFines}>Строгих Выговоров:</Text>
             <Text style={styles.punishmentText}>{item.SevereReprimands}</Text>
             <Text style={styles.numberOfFines}>Выговоров:</Text>
@@ -38,7 +37,6 @@ export class PrivateOffice extends Component {
             <Text style={styles.numberOfFines}>Предупреждений:</Text>
             <Text style={styles.punishmentText}>{item.Warnings}</Text>
 
-        
             <View style={styles.batteryOfFines}>
                 <View style={[
                     styles.indicatorBattery,
@@ -46,118 +44,62 @@ export class PrivateOffice extends Component {
                     ?{backgroundColor:"#FF1744"}
                     :{backgroundColor: "#D3D3D3"}
                 ]}>
-
                 </View>
+
                 <View  style={[
                     styles.indicatorBattery,
                     (+item.BalanceWarning) >23
                     ?{backgroundColor:"#FF1744"}
                     :{backgroundColor: "#D3D3D3"}
-                ]}></View>
+                ]}>
+                </View>
+
                 <View  style={[
                     styles.indicatorBattery,
                     (+item.BalanceWarning) >20
                     ?{backgroundColor:"#FF1744"}
                     :{backgroundColor: "#D3D3D3"}
-                ]}></View>
+                ]}>
+                </View>
+
                 <View  style={[
                     styles.indicatorBattery,
                     (+item.BalanceWarning) >15
                     ?{backgroundColor:"#FF1744"}
                     :{backgroundColor: "#D3D3D3"}
-                ]}></View>
+                ]}>
+                </View>
+
                 <View  style={[
                     styles.indicatorBattery,
                     (+item.BalanceWarning) >8
                     ?{backgroundColor:"#FF1744"}
                     :{backgroundColor: "#D3D3D3"}
-                ]}></View>
+                ]}>
+                </View>
+
                 <View  style={[
                     styles.indicatorBattery,
                     (+item.BalanceWarning) >3
                     ?{backgroundColor:"#FF1744"}
                     :{backgroundColor: "#D3D3D3"}
-                ]}></View>
+                ]}>
+                </View>
+
                 <View  style={[
                     styles.indicatorBattery,
                     (+item.BalanceWarning) >0
                     ?{backgroundColor:"#FF1744"}
                     :{backgroundColor: "#D3D3D3"}
-                ]}></View>
-                
+                ]}>
+                </View>
             </View>
 
             <View  style={styles.MotivationBlock}>
             {item.BalanceWarning<24? vseok: pized}
             </View>
-
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                style={styles.btnNavigation}
-                onPress= {()=> {
-                    this.componentDidMount();
-                    this.props.navigation.navigate('Личный кабинет')
-                }
-            }
-                >
-                    <Image 
-            style={{
-                position: 'relative',
-                width: 70,
-                height: 70,
-                justifyContent: 'center',
-            }}
-                source={require('./img/Destination1.png')}></Image>
-                </TouchableOpacity>
-                               
-
-            <TouchableOpacity
-                style = {styles.btnNavigation}
-                onPress ={                 
-                    ()=>{
-                        const {
-                            userId
-                        } = this.props.route.params;
-                        this.props.navigation.navigate('Задачи',{IdUser: userId})
-                    }
-
-                }
-                >
-                <Image 
-            style={{
-                position: 'relative',
-                width: 70,
-                height: 70,
-                justifyContent: 'center',
-            }}
-                source={require('./img/Destination2.png')}></Image>
-
-                </TouchableOpacity>    
-                <TouchableOpacity
-                style = {styles.btnNavigation}
-                onPress ={                 
-                    ()=>{
-                        const {
-                            userId
-                        } = this.props.route.params;
-                        this.props.navigation.navigate('График',{IdUser: userId})
-                    }
-
-                }
-                >
-              <Image 
-            style={{
-                position: 'relative',
-                width: 70,
-                height: 70,
-                justifyContent: 'center',
-            }}
-                source={require('./img/Destination3.png')}></Image>
-                </TouchableOpacity>   
-                </View>
-            
                 
-            </View>
+        </View>
         )
 
 
@@ -181,22 +123,52 @@ export class PrivateOffice extends Component {
             .catch((error) => {
                 console.log(error);
             })
-
     }
 
     render() {
-        /*const {
-            userId
-        } = this.props.route.params;*/
+
         return (
-            <View  style= {styles.container}>
-                <FlatList
+        <View  style= {styles.container}>
+            <FlatList
                 keyExtractor={item=> item.Login}
                 data={this.state.dataInfoUser}
-                renderItem = {this.renderItem}
+                renderItem = {this.renderItem}/> 
+
+            <View style={btnStyles.buttonContainer}>
+                <TouchableOpacity
+                    style={btnStyles.btnNavigation}
+                    onPress= {()=> {
+                    this.componentDidMount();
+                    this.props.navigation.navigate('Личный кабинет')
+                        }
+                    }>
+                    <Image style={btnStyles.imageNavigationBtn}source={require('./img/Destination1.png')}/>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style = {btnStyles.btnNavigation}
+                    onPress ={                 
+                    ()=>{
+                    const {userId} = this.props.route.params;
+                    this.props.navigation.navigate('Задачи',{IdUser: userId})
+                        }
+                    }
+                    >
+                    <Image style={btnStyles.imageNavigationBtn}source={require('./img/Destination2.png')}/>
+                </TouchableOpacity>
                 
-                />       
-            </View>
+                <TouchableOpacity
+                    style = {btnStyles.btnNavigation}
+                    onPress ={                 
+                    ()=>{
+                    const {userId} = this.props.route.params;
+                    this.props.navigation.navigate('График',{IdUser: userId})
+                        }
+                    }>
+                    <Image style={btnStyles.imageNavigationBtn}source={require('./img/Destination3.png')}/>
+                </TouchableOpacity>   
+            </View>    
+        </View>
         )
     }
 }

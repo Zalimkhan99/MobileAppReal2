@@ -1,9 +1,14 @@
 import {StyleSheet,} from 'react-native';
 
 const styles = StyleSheet.create({
+    globalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
     container: {
         flex: 1,
-        width:500,  
         padding:5, 
     },
     notificationAndBlockTask:{
@@ -47,29 +52,6 @@ const styles = StyleSheet.create({
         fontSize:76,
     },
 
-    buttonContainer:{
-        //top:500,
-        width:600,
-        alignItems:'center',
-        position:'relative',
-        flexDirection:'row',
-        alignSelf:'flex-start',
-        left:25,
-        //backgroundColor:'silver',
-    },
-    
-    btnNavigation:{
-        position:'relative',
-        margin:10,
-        alignItems: 'center',
-        //width: 150,
-        //margin:1,
-        borderWidth:1,
-        borderRadius: 5,
-        backgroundColor:'#F0F0F0',
-        padding: 5,
-        borderColor:'#C0C0C0'
-    },
 })
 
 export default styles

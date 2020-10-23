@@ -72,22 +72,12 @@ export class FormLogin extends Component {
     render() {
         return (
             <View style={styles.container}>
-            
-            <Image 
-            style={{
-               // backgroundColor: '#ccc',
-                //flex: 1,
-                top:80,
-                position: 'relative',
-                width: 285,
-                height: 100,
-                justifyContent: 'center',
-            }}
-                source={require('./Logo.png')}></Image>
+
+                <View style={styles.logo}> 
+                    <Image style={styles.imageLogo}source={require('./img/Logo.png')}/>
+                </View>
+
                 <View style={styles.blocks}>
-                    <View style={styles.logo}> 
-                    
-                    </View>
 
                     <View >
                         <Text style={styles.text}>Логин: </Text>
@@ -130,10 +120,8 @@ export class FormLogin extends Component {
                     </View>                  
                 </View>
             </View>
-
         )
     }
-
 }
 
 export default FormLogin;

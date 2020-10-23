@@ -1,9 +1,10 @@
 import 'react-native-gesture-handler';
 import {Component} from 'react';
 import * as React from 'react'
-import {  Text, StyleSheet, View, Image   } from 'react-native';
+import {  Text, View, Image   } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import styles from "./Style/ScheduleStyle";
+import btnStyles from "./Style/BottomNavigatuinStyle";
 export class Schedule extends Component {
     constructor () {
         super()
@@ -71,77 +72,44 @@ export class Schedule extends Component {
             </View > 
     )
     return (
-    <View style={styles.container}> 
-        
-      
+    <View style={styles.globalContainer}>  
+
         <ScrollView style={styles.container}> 
             {listItem} 
-            
-
         </ScrollView>
-        <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                style={styles.btnNavigation}
+
+        <View style={btnStyles.buttonContainer}>
+            <TouchableOpacity
+                style={btnStyles.btnNavigation}
                 onPress= {()=> {
                     this.componentDidMount();
                     this.props.navigation.navigate('Личный кабинет')
-                }
-            }
-                >
-                    <Image 
-            style={{
-                position: 'relative',
-                width: 70,
-                height:70,
-                justifyContent: 'center',
-            }}
-                source={require('./img/Destination1.png')}></Image>
-                </TouchableOpacity>
-                               
+                }}>
+                    <Image style={btnStyles.imageNavigationBtn} source={require('./img/Destination1.png')}/>
+            </TouchableOpacity>
 
             <TouchableOpacity
-                style = {styles.btnNavigation}
+                style = {btnStyles.btnNavigation}
                 onPress ={                 
                     ()=>{
                         const {
                             IdUser
                         } = this.props.route.params;
                         this.props.navigation.navigate('Задачи',{IdUser: IdUser})
-                    }
+                    }}>
+                    <Image style={btnStyles.imageNavigationBtn}source={require('./img/Destination2.png')}/>
+            </TouchableOpacity>
 
-                }
-                >
-                <Image 
-            style={{
-                position: 'relative',
-                width: 70,
-                height: 70,
-                justifyContent: 'center',
-            }}
-                source={require('./img/Destination2.png')}></Image>
-
-                </TouchableOpacity>    
-                <TouchableOpacity
-                style = {styles.btnNavigation}
-                onPress ={                 
+            <TouchableOpacity
+                    style = {btnStyles.btnNavigation}
+                    onPress ={                 
                     ()=>{
-                        const { IdUser } = this.props.route.params;
-                     
-                        this.props.navigation.navigate('График',{IdUser: IdUser})
-                    }
-
-                }
-                >
-              <Image 
-            style={{
-                position: 'relative',
-                width: 70,
-                height: 70,
-                justifyContent: 'center',
-            }}
-                source={require('./img/Destination3.png')}></Image>
-                </TouchableOpacity>   
-                </View>
+                    const { IdUser } = this.props.route.params;
+                    this.props.navigation.navigate('График',{IdUser: IdUser})
+                    }}>
+                    <Image style={btnStyles.imageNavigationBtn}source={require('./img/Destination3.png')}/>
+            </TouchableOpacity>   
+        </View>
     </View>
     )
     }

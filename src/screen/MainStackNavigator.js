@@ -1,12 +1,10 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-
 import FormLogin from '../FormLogin'
 import PrivateOffice from '../PrivateOffice'
 import Schedule from '../Schedule'
 import TaskPage from '../TaskPage';
 import TaskInfo from '../TaskInfo';
-import { HeaderStyleInterpolators } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 const MainStackNavigator = () => {
     return(
@@ -33,20 +31,12 @@ const MainStackNavigator = () => {
                 name = "К задачам"
                 component ={TaskInfo}
                 />
+   
                 
             </Stack.Navigator>
         
     )
 }
 
-const LoginIn = () => {
-    return(
-       
-            <Stack.Navigator>
-                <Stack.Screen name="Вход" component = {FormLogin}/>
-                
-            </Stack.Navigator>
-        
-    )
-}
-export {MainStackNavigator, LoginIn}
+
+export {MainStackNavigator}

@@ -28,11 +28,7 @@ const  styles = StyleSheet.create({
         color:'#000',
     },
     logo: {
-        fontWeight: 'bold',
         marginBottom: 100,
-        fontSize: 100,
-        fontFamily: 'Impact',
-        fontStyle: "italic",
     },
     btn: {
         backgroundColor:'#0E4DA4',
@@ -41,6 +37,13 @@ const  styles = StyleSheet.create({
         top: 20,
     
     },
+    imageLogo:{
+        top:80,
+        position: 'relative',
+        width: 285,
+        height: 100,
+        justifyContent: 'center',
+    }
 
 });
 export default styles;

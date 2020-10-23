@@ -4,16 +4,13 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-      //  height:850
     },
     
     heading: {
         position:'relative',
         width: 270,
         height: 88,
-        //left: 25,
         top: 55,
-        /* 24 sp • H5 Headline */
         fontFamily: 'Inter',
         fontStyle: 'normal',
         fontWeight: '600',
@@ -43,12 +40,12 @@ const styles = StyleSheet.create({
         position: 'relative',
         width: 270,
         height: 50,
-        //left: 25,
         top: 60,
+
         borderColor:"silver",
         borderBottomWidth:1.33333,
         borderTopWidth:1.33333,
-        /* 12 sp • Caption */
+
         fontFamily: 'Red Hat Text',
         fontStyle: 'normal',
         fontWeight: 'normal',
@@ -57,24 +54,6 @@ const styles = StyleSheet.create({
         color: '#979797',
     },
 
-    buttonContainer:{
-        //top:20,
-        
-        flexDirection:'row',
-    },
-    
-    btnNavigation:{
-        position:'relative',
-        marginRight:20,
-        alignItems: 'center',
-        //width: 150,
-        margin:1,
-        borderWidth:1,
-        borderRadius: 5,
-        backgroundColor:'#F0F0F0',
-        padding: 5,
-        borderColor:'#C0C0C0'
-    },
 
 
     
@@ -117,14 +96,12 @@ const styles = StyleSheet.create({
 
     },
     MotivationTextLetter:{
-       // margin:15,
         fontFamily: 'Inter',
         fontStyle: 'normal',
         fontWeight: '500',
         fontSize: 16,
         lineHeight: 16,
-        textAlign: 'center',
-        
+        textAlign: 'center',  
     },
     
     MotivationBlock:{
@@ -133,10 +110,6 @@ const styles = StyleSheet.create({
         bottom:50,
         borderTopWidth:1,
         borderTopColor:'silver'
-    }
-
-
-
-    
+    },
 })
 export default styles;
