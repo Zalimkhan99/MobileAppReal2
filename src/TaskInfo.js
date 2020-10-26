@@ -167,7 +167,7 @@ export class TaskInfo extends Component{
             )
             return (
                 <ScrollView style={styles.container} > 
-                {listItem} 
+                    {listItem} 
                 </ScrollView>
             )
         }

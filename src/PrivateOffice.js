@@ -20,6 +20,28 @@ export class PrivateOffice extends Component {
             dataInfoUser: [], 
         }
     }
+    
+    componentDidMount() {
+        const {
+            userId
+        } = this.props.route.params;
+        let urlUserGetInfo = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/users/'+ userId;
+        
+        fetch(urlUserGetInfo, {
+                method: 'GET'
+            })
+            .then((response) => response.json())
+            .then((responseJSON) => {
+                this.setState({
+                    dataInfoUser: responseJSON.DataUser
+                })
+                
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
     renderItem = ({
         item
     }) => {
@@ -104,26 +126,7 @@ export class PrivateOffice extends Component {
 
 
     }
-    componentDidMount() {
-        const {
-            userId
-        } = this.props.route.params;
-        let urlUserGetInfo = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/users/'+ userId;
-        
-        fetch(urlUserGetInfo, {
-                method: 'GET'
-            })
-            .then((response) => response.json())
-            .then((responseJSON) => {
-                this.setState({
-                    dataInfoUser: responseJSON.DataUser
-                })
-                
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
+
 
     render() {
 
