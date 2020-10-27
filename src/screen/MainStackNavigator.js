@@ -8,7 +8,6 @@ import TaskInfo from '../TaskInfo';
 const Stack = createStackNavigator();
 const MainStackNavigator = () => {
     return(
-       
             <Stack.Navigator>
                 <Stack.Screen
                 name="Вход"

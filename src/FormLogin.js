@@ -1,16 +1,7 @@
-import {
-    TextInput
-} from 'react-native-gesture-handler'
+import {TextInput} from 'react-native-gesture-handler'
 import * as React from 'react'
-import  {
-    Component
-} from 'react';
-import {
-    Text,
-    View,
-    Button, 
-    Image
-} from 'react-native';
+import  {Component} from 'react';
+import {Text,View,Button, Image} from 'react-native';
 import styles   from "./Style/FormLoginStyle";
 
 let AuthorizationFlagGlobal = false; // проверка заргестрирован ли пользователь
