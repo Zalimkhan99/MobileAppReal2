@@ -3,7 +3,7 @@ import * as React from 'react'
 import  {Component} from 'react';
 import {Text,View,Button, Image} from 'react-native';
 import styles   from "./Style/FormLoginStyle";
-
+var md5 = require('md5');  
 let AuthorizationFlagGlobal = false; // проверка заргестрирован ли пользователь
 export class FormLogin extends Component {
 
@@ -18,7 +18,8 @@ export class FormLogin extends Component {
     Request1cHTTPserv() { 
         let user = this.state.username;
         let pass = this.state.password;
-        let urlСheckLoginHTTP = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/auth/' + user + '/' + pass;
+        let res = [...md5(pass)].map((d,i)=>(i)%2==0?' '+ d:d).join('').trim();
+        let urlСheckLoginHTTP = 'http://lkp.real2.ru/real2/hs/LK/auth/' + user + '/' + res;
         return urlСheckLoginHTTP;
     }
     checkRequest1cHTTPserv() {
@@ -76,7 +77,7 @@ export class FormLogin extends Component {
                         style={styles. elementForm} 
                         onChangeText ={ username=> this.setState(
                             {username})}
-                            placeholder={"Введите ФИО"}
+                            placeholder={" Введите ФИО"}
                         />
                     
                     </View>
@@ -87,7 +88,7 @@ export class FormLogin extends Component {
                         style={styles.elementForm} 
                         secureTextEntry={true}
                         onChangeText = {password=> this.setState({password})}
-                        placeholder={"*****"}
+                        placeholder={" *****"}
                         />
                     </View>
 

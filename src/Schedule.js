@@ -17,8 +17,8 @@ export class Schedule extends Component {
         const {
             IdUser
         } = this.props.route.params;
-        let urlScheduleGet = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/Schedule/'+ IdUser;
-        
+        let urlScheduleGet = `http://lkp.real2.ru/real2/hs/LK/Schedule/${IdUser}`;
+        console.log(urlScheduleGet)
     
         fetch(urlScheduleGet)
             .then((response) => response.json())
@@ -28,7 +28,7 @@ export class Schedule extends Component {
                 })
             })
             .catch((error) => {
-                alert(error)
+                console.log(error)
             })
     }
     
@@ -104,8 +104,8 @@ export class Schedule extends Component {
                     style = {btnStyles.btnNavigation}
                     onPress ={                 
                     ()=>{
-                    const { IdUser } = this.props.route.params;
-                    this.props.navigation.navigate('График',{IdUser: IdUser})
+                    //const { IdUser } = this.props.route.params;
+                    this.props.navigation.navigate('График')
                     }}>
                     <Image style={btnStyles.imageNavigationBtn}source={require('./img/Destination3.png')}/>
             </TouchableOpacity>   

@@ -18,7 +18,7 @@ export class TaskPage extends Component {
     }
     componentDidMount = () => {
         const { IdUser } = this.props.route.params;
-        let urlTasksGetHTTP = "http://192.168.250.8:8080/Mobile/hs/MobileApi/tasks/"+ IdUser;
+        let urlTasksGetHTTP = "http://lkp.real2.ru/real2/hs/LK/tasks/"+ IdUser;
         
         fetch(urlTasksGetHTTP)
         .then((response) => response.json())
@@ -45,7 +45,7 @@ export class TaskPage extends Component {
                     this.state.numberTaskGl = numberTask;
                     
                     this.props.navigation.navigate("К задачам", { IdTask: numberTask, idUserTaskInfo: IdUser });
-                    let urlTasksGetHTTP = "http://192.168.250.8:8080/Mobile/hs/MobileApi/tasks/"+ IdUser;
+                    let urlTasksGetHTTP = "http://lkp.real2.ru/real2/hs/LK/tasks/"+ IdUser;
                     fetch(urlTasksGetHTTP)
                     .then((response) => response.json())
                     .then((responseJson) => {
@@ -141,11 +141,11 @@ export class TaskPage extends Component {
                         style = {btnStyles.btnNavigation}
                         onPress ={                 
                             ()=>{
-                                const {
+                               /* const {
                                     IdUser
-                                } = this.props.route.params;
+                                } = this.props.route.params;*/
                                 this.componentDidMount();
-                                this.props.navigation.navigate('Задачи',{IdUser: IdUser})
+                                this.props.navigation.navigate('Задачи')
                             }}>
                         <Image style={btnStyles.imageNavigationBtn} source={require('./img/Destination2.png')}/>
                     </TouchableOpacity>  

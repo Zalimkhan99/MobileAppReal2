@@ -25,7 +25,8 @@ export class PrivateOffice extends Component {
         const {
             userId
         } = this.props.route.params;
-        let urlUserGetInfo = 'http://192.168.250.8:8080/Mobile/hs/MobileApi/users/'+ userId;
+        let urlUserGetInfo = 'http://lkp.real2.ru/real2/hs/LK/users/'+ userId;
+        console.log(urlUserGetInfo)
         
         fetch(urlUserGetInfo, {
                 method: 'GET'

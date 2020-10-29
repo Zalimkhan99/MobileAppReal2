@@ -19,7 +19,7 @@ export class TaskInfo extends Component{
         const { IdTask } = this.props.route.params;
         const { idUserTaskInfo } = this.props.route.params;
         
-        let urlTaskInfoGet = "http://192.168.250.8:8080/Mobile/hs/MobileApi/moreinfotask/"+ "" + IdTask+"/"+idUserTaskInfo;
+        let urlTaskInfoGet = "http://lkp.real2.ru/real2/hs/LK/moreinfotask/"+ "" + IdTask+"/"+idUserTaskInfo;
        // alert(urlTaskInfoGet);
         this.setState({
             idTaskInf: IdTask,
