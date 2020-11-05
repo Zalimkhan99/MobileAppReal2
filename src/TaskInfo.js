@@ -51,8 +51,8 @@ export class TaskInfo extends Component{
                             ?{color:"#1BB55C"}
                             : element.CheckStatus == "black"
                             ?{color:"#000"}
-                            :element.CheckStatus=="yellow"
-                            ?{color:"#FFBB12"}
+                            :element.StatusApplications =="В работе"
+                            ?{color:"#FFBB12", marginLeft:25}
                             :{color:"#0E4DA4"}
                             
                     ]}>

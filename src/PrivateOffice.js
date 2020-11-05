@@ -47,7 +47,7 @@ export class PrivateOffice extends Component {
         item
     }) => {
         const vseok = <Text style={styles.MotivationText}>Пока норм) {`\n`}{`\n`}<Text style={styles.MotivationTextLetter}>Но лучше проверь задачник </Text></Text>;
-        const pized = <Text  style={styles.MotivationText}>Держись {`\n`}{`\n`} <Text style={styles.MotivationTextLetter}>Советую изучить положение о мотивации</Text></Text>
+        const pizdec = <Text  style={styles.MotivationText}>Держись {`\n`}{`\n`} <Text style={styles.MotivationTextLetter}>Советую изучить положение о мотивации</Text></Text>
         return (
         <View style={styles.container}>
 
@@ -119,7 +119,7 @@ export class PrivateOffice extends Component {
             </View>
 
             <View  style={styles.MotivationBlock}>
-            {item.BalanceWarning<24? vseok: pized}
+            {item.BalanceWarning<24? vseok: pizdec}
             </View>
                 
         </View>

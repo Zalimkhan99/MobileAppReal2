@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
     globalBlockSchedule:{
         borderWidth:2,
-        width:270,
+        width:275,
         padding:3.5,
         marginBottom:5,
     },

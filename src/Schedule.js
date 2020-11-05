@@ -12,7 +12,17 @@ export class Schedule extends Component {
             dataJson: [],
         }
     }
-
+    formateData(date){
+        let dd = date.getDate();
+        if (dd < 10) dd = '0' + dd;
+      
+        let mm = date.getMonth() + 1;
+        if (mm < 10) mm = '0' + mm;
+      
+        let yy = date.getFullYear() % 100;
+        if (yy < 10) yy = '0' + yy;
+        return dd + '.' + mm + '.' + yy;
+    }
     componentDidMount = () => {
         const {
             IdUser
@@ -33,14 +43,15 @@ export class Schedule extends Component {
     }
     
     render(){ 
-        
         let elemList = this.state.dataJson
         let listItem = elemList.map((element, index)=> 
             
             <View key={index}  style={[
                 styles.globalBlockSchedule,
-                element.Tardiness !=""||element.CareBeforeTimePage!="0"
+                element.Tardiness !=""||element.CareBeforeTimePage!="" ||  element.AutoCare!="0"
                 ?{borderColor:"red"}
+                :element.ToDay!=""
+                ?{borderColor:"#FFBB12"}
                 :{borderColor:"green"}
             ]}>  
                 <View style={styles.blockCurrentDate}>
@@ -55,7 +66,12 @@ export class Schedule extends Component {
                 <Text  style={styles.WorkedTime}>{"Рабочее время"} </Text>
                 <Text style={styles.WorkedTime}>{element.ArrivalTime} - {element.CareTime}</Text>
                 </View>
-                <Text style={[{color:"silver"}]}>{"Отработано"} {element.WorkedTime} </Text>
+                <Text style={
+                    [{color:"#666666"},
+                   element.WorkedTime==""
+                        ? {display:'none'}
+                        :{}
+                    ]}>{"Отработано"} {element.WorkedTime} </Text>
                 <Text  style={
                     [styles.Warning,
                         element.Tardiness==""
@@ -65,10 +81,18 @@ export class Schedule extends Component {
                     {"Опоздание"} {element.Tardiness}</Text>
                 <Text  style={
                     [styles.Warning,
-                        element.CareBeforeTimePage=="0"
+                        element.AutoCare=="0"
                         ? {display:'none'}
                         :{}
                 ]}>{'Автоуход'} </Text>
+
+                <Text  style={
+                    [styles.Warning,
+                        element.CareBeforeTimePage==""
+                        ? {display:'none'}
+                        :{}
+                    ]}>{'Уход раньше времени'} {element.CareBeforeTimePage}</Text>                
+                
             </View > 
     )
     return (

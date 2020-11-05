@@ -60,12 +60,12 @@ const styles = StyleSheet.create({
     },
     comments:{
         fontSize: 14,
-        fontFamily: 'times new roman',
+        fontFamily: 'Inter',
     },
     commentsUsers:{
         fontSize: 12,
-        color:'silver',
-        fontFamily: 'times new roman',
+        color:'#666666',
+        fontFamily: 'Inter',
     },
     commentsHead:{
         fontSize: 14,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 1, 
         borderBottomWidth: 1, 
         fontFamily: 'Inter',
-        borderColor:'silver',
+        borderColor:'#666666',
         marginBottom:10,
     },
     
