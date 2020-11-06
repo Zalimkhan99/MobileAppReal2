@@ -14,7 +14,8 @@ export class FormLogin extends Component {
             username: '',
             password: '',
             dataUserJSON:[],
-            usernameStore:''
+            usernameStore:'',
+            passwordStore:''
 
         }
     }
@@ -26,8 +27,9 @@ export class FormLogin extends Component {
         let pass = this.state.password;
         let res = [...md5(pass)].map((d,i)=>(i)%2==0?' '+ d:d).join('').trim();
         let urlСheckLoginHTTP;
-        this.state.usernameStore=="null"?urlСheckLoginHTTP = 'http://lkp.real2.ru/real2/hs/LK/auth/' + user + '/' + res
-        :urlСheckLoginHTTP = 'http://lkp.real2.ru/real2/hs/LK/auth/' + userStore.replace(/"/g,"") + '/' + res
+
+        this.state.usernameStore=="null" || this.state.passwordStore=="37 a6 25 9c c0 c1 da e2 99 a7 86 64 89 df f0 bd"  ?urlСheckLoginHTTP = 'http://lkp.real2.ru/real2/hs/LK/auth/' + user + '/' + res
+        :urlСheckLoginHTTP = 'http://lkp.real2.ru/real2/hs/LK/auth/' + userStore.replace(/"/g,"") + '/' + this.state.passwordStore
         // alert(urlСheckLoginHTTP)
         return urlСheckLoginHTTP;
     }
@@ -44,7 +46,7 @@ export class FormLogin extends Component {
     
     completedRequest1cHTTPserv() {
         AuthorizationFlagGlobal = true;
-       fetch(this.Request1cHTTPserv(), {
+        fetch(this.Request1cHTTPserv(), {
                 method: 'GET'
             })
             .then((responseTextJsonLogin) => responseTextJsonLogin.json())
@@ -63,8 +65,9 @@ export class FormLogin extends Component {
     
     checkAuthorization() {
         if (AuthorizationFlagGlobal == true) {
-            this.state.usernameStore=="null"
+            AsyncStorage.setItem("userPass",this.state.password );
 
+            this.state.usernameStore=="null"
             ?this.props.navigation.navigate('Личный кабинет', {
                 
                 userId: this.state.username
@@ -73,41 +76,50 @@ export class FormLogin extends Component {
                 
                 userId: this.state.usernameStore.replace(/"/g,"")
             })
+
         }
     }
     
     _handlePress() {
         this.checkRequest1cHTTPserv();
     }
-/*
-    async storeToken(user){
-        try{
-            await AsyncStorage.setItem("userData",this.state.dataUserJSON );
-        }
-        catch(error){
-            console.log("Something went wrong", error);
-        }
-    }
-    */
- async getToken(){
-        try{
-            let userData = await AsyncStorage.getItem("userData");
-            let data = userData ;
-           
-            let str = JSON.stringify(data, ['name']);
-            this.state.usernameStore = str
-            console.log((this.state.usernameStore));
 
+    
+   async autoLogin(){
+        try{
+            
+            let userData = await AsyncStorage.getItem("userData");
+            let userpass = await  AsyncStorage.getItem("userPass");
+
+            let dataName = userData ;
+            let strpas = JSON.stringify(userpass,['password']) 
+            let  noTabstrpassword = strpas.replace(/"/g,"")
+
+            this.state.passwordStore!=''
+            let passwordStoreMd5 = [...md5(noTabstrpassword)].map((d,i)=>(i)%2==0?' '+ d:d).join('').trim()
+            this.state.passwordStore = passwordStoreMd5;
+            
+            let str = JSON.stringify(dataName, ['name']);
+            this.state.usernameStore = str;
+            console.log((this.state.usernameStore));
+             console.log(this.state.passwordStore)
             return this.state.usernameStore
         }
         catch(error){
             console.log(error);
         }
     }
-    
+
     componentDidMount() {
-        this.getToken();
-     }
+        this.autoLogin();
+        //this.navigateScreenStor()
+        setTimeout(() => {
+            if( this.state.passwordStore != "" &&  this.state.usernameStore!="null" ){
+            this.props.navigation.navigate('Личный кабинет', {  userId: this.state.usernameStore.replace(/"/g,"")} )
+                }
+            },
+        900)
+    }
 
     render() {
         return (
@@ -127,7 +139,6 @@ export class FormLogin extends Component {
                         defaultValue = {  this.state.usernameStore!="null"?this.state.usernameStore.replace(/"/g,""):"" }
                             placeholder={" Введите ФИО" }
                         />
-                    
                     </View>
 
                     <View>
@@ -146,10 +157,8 @@ export class FormLogin extends Component {
                             () => {
                                 this.componentDidMount()
                                 this._handlePress();
-                                
                                 setTimeout(() => {
                                     this.checkAuthorization();
-                                   
                                 }, 2000);
                                 
                             }
