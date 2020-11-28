@@ -25,7 +25,7 @@ export class FormLogin extends Component {
         let userStore = this.state.usernameStore;
 
         let pass = this.state.password;
-        let res = [...md5(pass)].map((d,i)=>(i)%2==0?' '+ d:d).join('').trim();
+        let res = [...md5(pass)].map((d,i)=>(i)%2==0?' '+ d:d).join('').trim();// хеширует пароль и добавляет пробелы через каждые два символа
         let urlСheckLoginHTTP;
 
         this.state.usernameStore=="null" || this.state.passwordStore=="37 a6 25 9c c0 c1 da e2 99 a7 86 64 89 df f0 bd"  ?urlСheckLoginHTTP = 'http://lkp.real2.ru/real2/hs/LK/auth/' + user + '/' + res
@@ -85,7 +85,7 @@ export class FormLogin extends Component {
     }
 
     
-   async autoLogin(){
+    async autoLogin(){
         try{
             
             let userData = await AsyncStorage.getItem("userData");
@@ -102,7 +102,7 @@ export class FormLogin extends Component {
             let str = JSON.stringify(dataName, ['name']);
             this.state.usernameStore = str;
             console.log((this.state.usernameStore));
-             console.log(this.state.passwordStore)
+            console.log(this.state.passwordStore)
             return this.state.usernameStore
         }
         catch(error){

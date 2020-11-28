@@ -141,7 +141,7 @@ export class TaskPage extends Component {
                         style = {btnStyles.btnNavigation}
                         onPress ={                 
                             ()=>{
-                               /* const {
+                            /* const {
                                     IdUser
                                 } = this.props.route.params;*/
                                 this.componentDidMount();

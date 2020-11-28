@@ -61,7 +61,7 @@ export class TaskInfo extends Component{
                 </View>
             
                 <Text style={[styles.taskName ]}>{element.NameTasks}</Text>
-                <Text style={styles.customerAndExecutor}>{"Заказчик"}</Text>
+                <Text style={styles.customerAndExecutor}>{"Заказчик"}</Text> 
                 <Text style={{fontSize:12, marginBottom:5}}>{element.Customer}</Text>
                 <Text style={styles.customerAndExecutor}>{"Исполнитель"} </Text>
                 <Text style={{fontSize:12,
